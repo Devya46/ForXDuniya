@@ -1,0 +1,6436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World of Forex</title>
+    <style>
+      /* ---------- RESET & BASE ---------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        background: #0a0b10;
+        color: #fff;
+      }
+
+      /* ---------- NAVBAR SHELL ---------- */
+      .site-header {
+        width: 100%;
+        height: 67px;
+        background: #0a0b10;
+        border-top: 1px solid #25262c;
+        border-bottom: 1px solid #646600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 1000;
+      }
+
+      .header-container {
+        width: 100%;
+        max-width: 1580px;
+        height: 100%;
+        padding: 0 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* ---------- BRAND ---------- */
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: #ffffff;
+        flex-shrink: 0;
+      }
+
+      .brand-logo {
+        width: 149px;
+        height: 63px;
+        object-fit: contain;
+        display: block;
+        filter: brightness(1.3);
+      }
+
+      .brand-wordmark {
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        color: #f5f5f5;
+      }
+
+      .brand-wordmark .accent {
+        color: #d9ad2f;
+      }
+
+      /* ---------- DESKTOP NAV ---------- */
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        height: 100%;
+      }
+
+      .nav-link {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #c9c9ce;
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        transition:
+          color 0.2s ease,
+          opacity 0.2s ease;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      }
+
+      .nav-link:hover {
+        color: #ffffff;
+      }
+
+      /* ---------- RIGHT ACTIONS ---------- */
+      .action-group {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        flex-shrink: 0;
+      }
+
+      .portal-badge {
+        height: 32px;
+        padding: 0 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #76580b;
+        border-radius: 5px;
+        background: rgba(111, 79, 0, 0.12);
+        color: #e8b400;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+
+      .portal-badge:hover {
+        background: rgba(217, 173, 47, 0.15);
+        border-color: #c99b22;
+      }
+
+      .login-link {
+        color: #c9c9ce;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .login-link:hover {
+        color: #ffffff;
+      }
+
+      .cta-start {
+        height: 37px;
+        min-width: 125px;
+        padding: 0 23px;
+        border-radius: 11px;
+        background: #d8a511;
+        color: #08090d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .cta-start:hover {
+        background: #e6bd45;
+        transform: translateY(-1px);
+      }
+
+      /* ---------- MOBILE TOGGLE ---------- */
+      .hamburger {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #2b2c32;
+        border-radius: 8px;
+        background: #111218;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .hamburger-line {
+        width: 20px;
+        height: 2px;
+        background: #d9ad2f;
+        border-radius: 2px;
+        transition: all 0.25s ease;
+      }
+
+      /* ---------- MOBILE MENU ---------- */
+      .mobile-drawer {
+        display: none;
+        position: absolute;
+        top: 81px;
+        left: 0;
+        width: 100%;
+        background: #0a0b10;
+        border-bottom: 1px solid #25262c;
+        padding: 15px 25px 25px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      .mobile-drawer a {
+        display: block;
+        padding: 15px 0;
+        color: #c9c9ce;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        border-bottom: 1px solid #1d1e24;
+      }
+
+      .mobile-drawer a:last-child {
+        border-bottom: none;
+      }
+
+      .mobile-drawer .mobile-cta {
+        margin-top: 15px;
+        text-align: center;
+        background: #d9ad2f;
+        color: #08090d;
+        border-radius: 9px;
+        padding: 13px;
+      }
+
+      .mobile-drawer.open {
+        display: block;
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 1150px) {
+        .primary-nav {
+          gap: 25px;
+          margin-right: 30px;
+        }
+
+        .action-group {
+          gap: 20px;
+        }
+
+        .header-container {
+          padding: 0 30px;
+        }
+      }
+
+      @media (max-width: 950px) {
+        .primary-nav,
+        .action-group {
+          display: none;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .header-container {
+          padding: 0 24px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .site-header {
+          height: 72px;
+        }
+
+        .header-container {
+          padding: 0 16px;
+        }
+
+        .brand-logo {
+          width: 48px;
+          height: 48px;
+        }
+
+        .brand-wordmark {
+          font-size: 23px;
+        }
+
+        .mobile-drawer {
+          top: 72px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================
+       SITE HEADER
+  ========================= -->
+    <header class="site-header">
+      <div class="header-container">
+        <!-- BRAND -->
+        <a href="#" class="brand">
+          <img
+            class="brand-logo"
+            src="https://worldofforex.uk/wp-content/uploads/2026/09/logo-1.png"
+            alt="WorldofForex logo"
+          />
+          <!-- <div class="brand-wordmark">SOLV<span class="accent">V</span>EX</div> -->
+        </a>
+
+        <!-- DESKTOP NAVIGATION -->
+        <nav class="primary-nav">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Live Charts</a>
+          <a href="#" class="nav-link">Packages</a>
+          <a href="#" class="nav-link">Trading Engine</a>
+          <a href="#" class="nav-link">Investors</a>
+        </nav>
+
+        <!-- RIGHT ACTIONS -->
+        <div class="action-group">
+          <a href="#" class="portal-badge">Investor Portal</a>
+          <a href="#" class="login-link">Login</a>
+          <a href="#" class="cta-start">Start Now</a>
+        </div>
+
+        <!-- MOBILE MENU TOGGLE -->
+        <button
+          class="hamburger"
+          id="menuToggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div class="mobile-drawer" id="mobileMenu">
+        <a href="#">Home</a>
+        <a href="#">Live Charts</a>
+        <a href="#">Packages</a>
+        <a href="#">Trading Engine</a>
+        <a href="#">Investors</a>
+        <a href="#">Investor Portal</a>
+        <a href="#">Login</a>
+        <a href="#" class="mobile-cta">Start Now</a>
+      </div>
+    </header>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuToggle.addEventListener("click", function () {
+        mobileMenu.classList.toggle("open");
+
+        const isOpen = mobileMenu.classList.contains("open");
+        menuToggle.setAttribute("aria-expanded", isOpen);
+
+        const lines = menuToggle.querySelectorAll(".hamburger-line");
+
+        if (isOpen) {
+          lines[0].style.transform = "rotate(45deg) translate(5px, 5px)";
+          lines[1].style.opacity = "0";
+          lines[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
+        } else {
+          lines[0].style.transform = "";
+          lines[1].style.opacity = "1";
+          lines[2].style.transform = "";
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ----- Home -----  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Institutional Group Trading Plan</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        /* min-height: 100vh; */
+        background: #09090b;
+        color: #f4f4f5;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+
+      button,
+      a {
+        font-family: inherit;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      /* =========================================================
+       HERO SECTION
+    ========================================================= */
+
+      .institutional-hero {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 24px 150px;
+        background:
+          radial-gradient(
+            circle at 50% 16%,
+            rgba(212, 169, 42, 0.1) 0%,
+            rgba(212, 169, 42, 0.035) 15%,
+            transparent 34%
+          ),
+          #09090b;
+        overflow: hidden;
+        border-bottom: 1px solid #ffd7004f;
+      }
+
+      /* Subtle top border exactly like reference */
+
+      .institutional-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 1px;
+
+        background: rgba(100, 100, 110, 0.45);
+      }
+
+      /* =========================================================
+       HERO CONTENT
+    ========================================================= */
+
+      .institutional-hero-content {
+        position: relative;
+        z-index: 2;
+
+        width: 100%;
+        max-width: 950px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top: 68px;
+        text-align: center;
+      }
+
+      /* =========================================================
+       LOGO
+    ========================================================= */
+
+      .institutional-brand-logo {
+        display: block;
+
+        width: 205px;
+        height: auto;
+
+        object-fit: contain;
+
+        margin-bottom: 30px;
+
+        filter: drop-shadow(0 0 18px rgba(231, 185, 54, 0.12))
+          drop-shadow(0 0 35px rgba(231, 185, 54, 0.05));
+      }
+
+      /* =========================================================
+       TOP LABEL
+    ========================================================= */
+
+      .institutional-plan-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+
+        min-height: 34px;
+
+        padding: 7px 18px;
+
+        border: 1px solid rgba(207, 160, 25, 0.38);
+        border-radius: 999px;
+
+        background: rgba(207, 160, 25, 0.07);
+
+        color: #dcb43c;
+
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1;
+
+        letter-spacing: -0.1px;
+
+        box-shadow: inset 0 0 18px rgba(212, 169, 42, 0.025);
+      }
+
+      .institutional-plan-label i {
+        color: #dcae25;
+        font-size: 13px;
+      }
+
+      /* =========================================================
+       MAIN HEADLINE
+    ========================================================= */
+
+      .institutional-hero-title {
+        margin-top: 34px;
+        max-width: 980px;
+        font-size: clamp(48px, 5.2vw, 60px);
+        line-height: 1.25;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+      }
+
+      .institutional-title-white {
+        display: block;
+
+        color: #f1f1f1;
+      }
+
+      .institutional-title-gold {
+        display: block;
+        margin-top: 14px;
+        color: #dfbb4800;
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* =========================================================
+       DESCRIPTION
+    ========================================================= */
+
+      .institutional-hero-description {
+        max-width: 820px;
+        margin-top: 35px;
+        color: #d6d6d9;
+        font-size: 18px;
+        line-height: 29px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+      }
+
+      .institutional-hero-description strong {
+        color: #f1f1f1;
+        font-weight: 800;
+      }
+
+      /* =========================================================
+       CTA BUTTON GROUP
+    ========================================================= */
+
+      .institutional-action-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 17px;
+
+        margin-top: 46px;
+      }
+
+      /* =========================================================
+       COMMON BUTTON
+    ========================================================= */
+
+      .institutional-action {
+        min-width: 230px;
+        height: 53px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 0 28px;
+        border-radius: 13px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          background 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .institutional-action:hover {
+        transform: translateY(-2px);
+      }
+
+      /* =========================================================
+       PRIMARY BUTTON
+    ========================================================= */
+
+      .institutional-action-primary {
+        border: 1px solid #d7ab25;
+
+        background: linear-gradient(
+          135deg,
+          #d9ae2c 0%,
+          #e0b933 50%,
+          #d3a51e 100%
+        );
+
+        color: #090909;
+
+        box-shadow: 0 7px 25px rgba(218, 173, 40, 0.08);
+      }
+
+      .institutional-action-primary:hover {
+        background: linear-gradient(
+          135deg,
+          #e4bb3e 0%,
+          #e8c44e 50%,
+          #dcb12d 100%
+        );
+
+        box-shadow: 0 10px 32px rgba(218, 173, 40, 0.16);
+      }
+
+      .institutional-action-primary i {
+        font-size: 15px;
+      }
+
+      /* =========================================================
+       SECONDARY GOLD BUTTON
+    ========================================================= */
+
+      .institutional-action-market {
+        border: 1px solid rgba(197, 151, 31, 0.52);
+
+        background: rgba(12, 12, 14, 0.75);
+
+        color: #e3bf51;
+      }
+
+      .institutional-action-market:hover {
+        background: rgba(205, 158, 34, 0.07);
+
+        border-color: rgba(220, 174, 46, 0.8);
+
+        box-shadow: 0 8px 30px rgba(209, 166, 45, 0.05);
+      }
+
+      .institutional-action-market i {
+        color: #dcb439;
+        font-size: 15px;
+      }
+
+      /* =========================================================
+       THIRD BUTTON
+    ========================================================= */
+
+      .institutional-action-packages {
+        min-width: 228px;
+
+        border: 1px solid #292a31;
+
+        background: rgba(10, 10, 13, 0.65);
+
+        color: #e0e0e3;
+      }
+
+      .institutional-action-packages:hover {
+        border-color: #414149;
+
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      /* =========================================================
+       RESPONSIVE TABLET
+    ========================================================= */
+
+      @media (max-width: 900px) {
+        .institutional-hero {
+          padding: 50px 24px 70px;
+        }
+
+        .institutional-hero-title {
+          font-size: clamp(46px, 7vw, 62px);
+        }
+
+        .institutional-hero-description {
+          max-width: 760px;
+          font-size: 18px;
+        }
+
+        .institutional-action-group {
+          gap: 12px;
+        }
+
+        .institutional-action {
+          min-width: 210px;
+        }
+      }
+
+      /* =========================================================
+       RESPONSIVE MOBILE
+    ========================================================= */
+
+      @media (max-width: 700px) {
+        .institutional-hero {
+          min-height: 100svh;
+
+          padding: 35px 18px 55px;
+        }
+
+        .institutional-hero-content {
+          max-width: 100%;
+        }
+
+        .institutional-brand-logo {
+          width: 190px;
+          margin-bottom: 25px;
+        }
+
+        .institutional-plan-label {
+          padding: 7px 13px;
+
+          font-size: 11px;
+
+          white-space: nowrap;
+        }
+
+        .institutional-hero-title {
+          margin-top: 27px;
+
+          font-size: clamp(39px, 11vw, 54px);
+
+          line-height: 1.05;
+
+          letter-spacing: -2px;
+        }
+
+        .institutional-title-gold {
+          margin-top: 11px;
+        }
+
+        .institutional-hero-description {
+          margin-top: 28px;
+
+          font-size: 16px;
+          line-height: 1.65;
+        }
+
+        .institutional-action-group {
+          width: 100%;
+
+          flex-direction: column;
+
+          margin-top: 34px;
+        }
+
+        .institutional-action {
+          width: 100%;
+          max-width: 390px;
+
+          min-width: 0;
+
+          height: 57px;
+
+          font-size: 16px;
+        }
+      }
+
+      /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+      @media (max-width: 420px) {
+        .institutional-hero {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        .institutional-brand-logo {
+          width: 175px;
+        }
+
+        .institutional-plan-label {
+          font-size: 10px;
+        }
+
+        .institutional-hero-title {
+          font-size: 38px;
+        }
+
+        .institutional-hero-description {
+          font-size: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =======================================================
+       INSTITUTIONAL HERO
+  ======================================================== -->
+
+    <section class="institutional-hero">
+      <div class="institutional-hero-content">
+        <!-- LOGO -->
+        <img
+          class="institutional-brand-logo"
+          src="https://worldofforex.uk/wp-content/uploads/2026/09/logo-1.png"
+          alt="World of Forex"
+        />
+
+        <!-- PLAN LABEL -->
+        <div class="institutional-plan-label">
+          <i class="fa-solid fa-bolt"></i>
+
+          <span>
+            Institutional Group Trading Plan · Live Market Execution
+          </span>
+        </div>
+
+        <!-- HEADLINE -->
+        <h1 class="institutional-hero-title">
+          <span class="institutional-title-white"> 21 Levels. </span>
+
+          <span class="institutional-title-gold">
+            3X Investor Cap. 5X Networker<br class="desktop-break" />
+            Cap.
+          </span>
+        </h1>
+
+        <!-- DESCRIPTION -->
+        <p class="institutional-hero-description">
+          Choose your activation package from
+          <strong>$100 to $10,000.</strong>
+
+          Investors earn ROI on their investment up to a 3× income cap of the
+          invested amount, while Networkers/Affiliates earn from the 21-level
+          affiliate structure up to a 5× income cap.
+        </p>
+
+        <!-- ACTION BUTTONS -->
+        <div class="institutional-action-group">
+          <a
+            href="#invest"
+            class="institutional-action institutional-action-primary"
+          >
+            <span>Start Investing Now</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <a
+            href="#charts"
+            class="institutional-action institutional-action-market"
+          >
+            <i class="fa-solid fa-wave-square"></i>
+            <span>View Live Charts</span>
+          </a>
+
+          <a
+            href="#packages"
+            class="institutional-action institutional-action-packages"
+          >
+            <span>Explore Packages</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+       OPTIONAL JAVASCRIPT
+       Smooth button interaction
+  ======================================================== -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const actionButtons = document.querySelectorAll(
+          ".institutional-action",
+        );
+
+        actionButtons.forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const targetSelector = button.getAttribute("href");
+
+            if (targetSelector && targetSelector.startsWith("#")) {
+              const targetElement = document.querySelector(targetSelector);
+
+              if (targetElement) {
+                event.preventDefault();
+
+                targetElement.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- --- market ananlysis--- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Trading Charts · Professional Dark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ---------- MAIN SECTION ---------- */
+      .market-intelligence-section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 81px 20px 70px;
+        background: #0a0a0f !important;
+      }
+
+      .market-intelligence-wrapper {
+        width: 100%;
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+
+      /* ---------- HEADER (reduced font sizes) ---------- */
+      .market-header {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .market-status-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        min-height: 28px;
+        padding: 5px 14px;
+        border: 1px solid rgba(0, 213, 158, 0.35);
+        border-radius: 999px;
+        background: #071714 !important;
+        color: #00d99e;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+      }
+
+      .market-status-pill svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      .market-header-title {
+        margin-top: 12px;
+        font-size: clamp(30px, 3.8vw, 44px);
+        line-height: 1.1;
+        font-weight: 800;
+        letter-spacing: -1.8px;
+      }
+
+      .market-title-white {
+        color: #f5f5f6;
+      }
+
+      .market-title-gold {
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      .market-header-description {
+        max-width: 700px;
+        margin: 10px auto 0;
+        color: #a2a4ac;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 400;
+      }
+
+      /* ---------- MINI CHART GRID ---------- */
+      .asset-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        width: 100%;
+      }
+
+      .asset-preview-card {
+        position: relative;
+        min-width: 0;
+        height: 280px;
+        padding: 14px;
+        border: 1px solid #292b35;
+        border-radius: 16px;
+        background: #0d0d12 !important;
+        overflow: hidden;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .asset-preview-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(223, 187, 72, 0.3);
+      }
+
+      .asset-card-heading {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 7px;
+      }
+
+      .asset-card-name {
+        color: #e8e8ed;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .asset-live-indicator {
+        display: inline-flex;
+        align-items: center;
+        height: 22px;
+        padding: 0 9px;
+        border: 1px solid #282a32;
+        border-radius: 999px;
+        background: #0a0a0e !important;
+        color: #7a7d86;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+
+      .asset-chart-frame {
+        width: 100%;
+        height: 220px;
+        border: 1px solid #22242d;
+        border-radius: 12px;
+        background: #0b0b10 !important;
+        overflow: hidden;
+      }
+
+      .asset-chart-frame tv-mini-chart {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ---------- ADVANCED TERMINAL ---------- */
+      .advanced-market-terminal {
+        width: 100%;
+        margin-top: 28px;
+        border: 1px solid #292b35;
+        border-radius: 18px;
+        background: #0d0d12 !important;
+        overflow: hidden;
+      }
+
+      /* ---------- TOOLBAR ---------- */
+      .market-terminal-toolbar {
+        width: 100%;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 18px;
+        background: #0d0d12 !important;
+        flex-wrap: wrap;
+      }
+
+      .market-symbol-tabs {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex: 1;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        flex-wrap: nowrap;
+      }
+
+      .market-symbol-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .execution-status {
+        flex: 0 0 auto;
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 0 12px;
+        border: 1px solid rgba(213, 174, 48, 0.3);
+        border-radius: 9px;
+        background: #121109 !important;
+        color: #dfbb48;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+        letter-spacing: 0.2px;
+      }
+
+      .execution-status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #00c98e;
+        box-shadow: 0 0 8px rgba(0, 201, 142, 0.5);
+      }
+
+      /* ---------- SYMBOL BUTTONS (smaller) ---------- */
+      .market-symbol-button {
+        flex: 0 0 auto;
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 0 11px;
+        border: 1px solid #242630;
+        border-radius: 10px;
+        background: #0b0b10 !important;
+        color: #b8b9c0;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .market-symbol-button:hover {
+        border-color: rgba(223, 187, 72, 0.4);
+        color: #eeeeef;
+        background: #101015 !important;
+      }
+
+      .market-symbol-button.active {
+        border-color: #e0b633;
+        background: linear-gradient(135deg, #d4af37, #e6c34a) !important;
+        color: #0b0b0c;
+        box-shadow: 0 4px 16px rgba(212, 175, 55, 0.12);
+      }
+
+      .symbol-icon {
+        width: 14px;
+        height: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 14px;
+      }
+
+      .symbol-icon svg {
+        width: 14px;
+        height: 14px;
+        display: block;
+      }
+
+      .bitcoin-symbol {
+        color: #f5a900;
+      }
+      .ethereum-symbol {
+        color: #b8b9ff;
+      }
+      .solana-symbol {
+        color: #a79bff;
+      }
+      .bnb-symbol {
+        color: #ffe000;
+      }
+      .gold-symbol {
+        color: #ffc400;
+      }
+      .euro-symbol {
+        color: #e1e7ff;
+      }
+
+      /* ---------- CHART MODE SWITCHER (smaller) ---------- */
+      .chart-mode-switcher {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 3px;
+        border: 1px solid #242630;
+        border-radius: 11px;
+        background: #0a0a0f !important;
+      }
+
+      .chart-mode-button {
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent !important;
+        color: #7e818b;
+        font-size: 11px;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .chart-mode-button.active {
+        color: #dfbb48;
+        background: #17140b !important;
+        box-shadow: inset 0 0 0 1px rgba(207, 165, 44, 0.2);
+      }
+
+      .chart-mode-icon {
+        width: 13px;
+        height: 13px;
+      }
+
+      /* ---------- ADVANCED CHART ---------- */
+      .advanced-chart-container {
+        width: 100%;
+        height: 520px;
+        border-top: 1px solid #25262d;
+        background: #0f0f0f !important;
+        position: relative;
+      }
+
+      .tradingview-widget-container {
+        width: 100% !important;
+        height: 100% !important;
+        background: #0f0f0f !important;
+      }
+
+      .tradingview-widget-container__widget {
+        width: 100% !important;
+        height: calc(100% - 32px) !important;
+        background: #0f0f0f !important;
+      }
+
+      .tradingview-widget-copyright {
+        width: 100%;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        background: #0f0f0f !important;
+        font-size: 10px;
+      }
+
+      .tradingview-widget-copyright a {
+        color: #555b67;
+      }
+
+      .tradingview-widget-copyright .trademark {
+        color: #454952;
+      }
+
+      /* ---------- RESPONSIVE BREAKPOINTS ---------- */
+      @media (max-width: 1100px) {
+        .asset-preview-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 900px) {
+        .market-terminal-toolbar {
+          gap: 10px;
+        }
+
+        .market-symbol-tabs {
+          flex-wrap: wrap;
+          overflow-x: visible;
+        }
+
+        .execution-status {
+          order: 0;
+        }
+
+        .chart-mode-switcher {
+          order: 1;
+          margin-left: auto;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .market-intelligence-section {
+          padding: 36px 12px 50px;
+        }
+
+        .market-header {
+          margin-bottom: 26px;
+        }
+
+        .market-status-pill {
+          font-size: 10px;
+          padding: 5px 11px;
+        }
+
+        .market-header-title {
+          font-size: 28px;
+          letter-spacing: -1.2px;
+        }
+
+        .market-header-description {
+          font-size: 13px;
+        }
+
+        .asset-preview-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .asset-preview-card {
+          height: 260px;
+          padding: 12px;
+        }
+
+        .asset-chart-frame {
+          height: 200px;
+        }
+
+        .advanced-market-terminal {
+          margin-top: 20px;
+          border-radius: 14px;
+        }
+
+        .market-terminal-toolbar {
+          padding: 10px;
+          gap: 8px;
+        }
+
+        .market-symbol-button {
+          height: 30px;
+          font-size: 10px;
+          padding: 0 9px;
+          gap: 4px;
+        }
+
+        .symbol-icon,
+        .symbol-icon svg {
+          width: 12px;
+          height: 12px;
+          flex: 0 0 12px;
+        }
+
+        .execution-status {
+          height: 30px;
+          padding: 0 10px;
+          font-size: 10px;
+        }
+
+        .chart-mode-switcher {
+          height: 30px;
+          padding: 2px;
+        }
+
+        .chart-mode-button {
+          height: 24px;
+          font-size: 10px;
+          padding: 0 8px;
+          gap: 4px;
+        }
+
+        .chart-mode-icon {
+          width: 11px;
+          height: 11px;
+        }
+
+        .advanced-chart-container {
+          height: 420px;
+        }
+
+        .tradingview-widget-container__widget {
+          height: calc(100% - 28px) !important;
+        }
+
+        .tradingview-widget-copyright {
+          height: 28px;
+          font-size: 9px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .market-header-title {
+          font-size: 24px;
+          letter-spacing: -1px;
+        }
+
+        .market-header-description {
+          font-size: 12px;
+        }
+
+        .asset-preview-card {
+          height: 240px;
+        }
+
+        .asset-chart-frame {
+          height: 182px;
+        }
+
+        .advanced-chart-container {
+          height: 360px;
+        }
+
+        .market-symbol-button {
+          font-size: 9px;
+          padding: 0 7px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="market-intelligence-section">
+      <div class="market-intelligence-wrapper">
+        <!-- HEADER -->
+        <header class="market-header">
+          <div class="market-status-pill">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="3 12 7 12 10 5 14 19 17 12 21 12"></polyline>
+            </svg>
+            <span>LIVE MARKET FEED · REAL-TIME EXECUTION</span>
+          </div>
+
+          <h1 class="market-header-title">
+            <span class="market-title-white">Live Trading Charts</span>
+            <span class="market-title-gold">&amp; Technical Analysis</span>
+          </h1>
+
+          <p class="market-header-description">
+            Real-time institutional price action, candlestick trends, and
+            multi‑indicator summaries across Bitcoin, Ethereum, Solana, Gold,
+            and major Forex pairs.
+          </p>
+        </header>
+
+        <!-- MINI CHARTS -->
+        <div class="asset-preview-grid">
+          <article class="asset-preview-card">
+            <div class="asset-card-heading">
+              <div class="asset-card-name">Bitcoin (BTC)</div>
+              <div class="asset-live-indicator">LIVE FEED</div>
+            </div>
+            <div class="asset-chart-frame">
+              <tv-mini-chart
+                symbol="BINANCE:BTCUSDT"
+                show-time-range
+                show-time-scale
+              ></tv-mini-chart>
+            </div>
+          </article>
+
+          <article class="asset-preview-card">
+            <div class="asset-card-heading">
+              <div class="asset-card-name">Ethereum (ETH)</div>
+              <div class="asset-live-indicator">LIVE FEED</div>
+            </div>
+            <div class="asset-chart-frame">
+              <tv-mini-chart
+                symbol="BITSTAMP:ETHUSD"
+                show-time-range
+                show-time-scale
+              ></tv-mini-chart>
+            </div>
+          </article>
+
+          <article class="asset-preview-card">
+            <div class="asset-card-heading">
+              <div class="asset-card-name">Solana (SOL)</div>
+              <div class="asset-live-indicator">LIVE FEED</div>
+            </div>
+            <div class="asset-chart-frame">
+              <tv-mini-chart
+                symbol="BINANCE:SOLUSDT"
+                show-time-range
+                show-time-scale
+              ></tv-mini-chart>
+            </div>
+          </article>
+
+          <article class="asset-preview-card">
+            <div class="asset-card-heading">
+              <div class="asset-card-name">Gold Spot (XAU)</div>
+              <div class="asset-live-indicator">LIVE FEED</div>
+            </div>
+            <div class="asset-chart-frame">
+              <tv-mini-chart
+                symbol="FOREXCOM:XAUUSD"
+                show-time-range
+                show-time-scale
+              ></tv-mini-chart>
+            </div>
+          </article>
+        </div>
+
+        <!-- ADVANCED TERMINAL -->
+        <div class="advanced-market-terminal">
+          <div class="market-terminal-toolbar">
+            <div class="market-symbol-tabs">
+              <div class="execution-status">
+                <span class="execution-status-dot"></span>
+                LIVE EXECUTION
+              </div>
+
+              <!-- BTC -->
+              <button
+                class="market-symbol-button active"
+                data-symbol="PYTH:BTCUSD"
+                data-name="Bitcoin price"
+              >
+                <span class="symbol-icon bitcoin-symbol">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M15.1 4.2c1.7.5 2.7 1.7 2.5 3.4-.1 1.2-.8 2-1.8 2.4 1.8.6 2.7 1.8 2.5 3.7-.3 2.6-2.5 3.6-5.3 3.8l-.3 2.3-1.7-.2.3-2.2-1.4-.2-.3 2.2-1.7-.2.3-2.3-4.2-.6.3-1.9 1.5.2c.6.1.8-.2.9-.7l.9-7.1c.1-.5-.1-.8-.7-.9L3.4 8l.2-1.9 4.2.6.3-2.2 1.7.2-.3 2.2 1.4.2.3-2.2 1.7.2-.3 2.2c.8-.1 1.7-.1 2.5.1zm-4.8 3.9-.4 3 2 .3c1.6.2 2.8-.1 3-1.3.2-1.3-.8-1.7-2.3-1.9l-2.3-.3zm-.7 4.7-.4 3.4 2.5.3c1.6.2 2.8-.2 3-1.5.2-1.4-.9-1.8-2.4-2l-2.7-.2z"
+                    />
+                  </svg>
+                </span>
+                BTC / USDT
+              </button>
+
+              <!-- ETH -->
+              <button
+                class="market-symbol-button"
+                data-symbol="BITSTAMP:ETHUSD"
+                data-name="Ethereum price"
+              >
+                <span class="symbol-icon ethereum-symbol">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2.5 5.8 12l6.2 3.7 6.2-3.7L12 2.5zM5.8 13.1 12 21.5l6.2-8.4-6.2 3.7-6.2-3.7z"
+                    />
+                  </svg>
+                </span>
+                ETH / USDT
+              </button>
+
+              <!-- SOL -->
+              <button
+                class="market-symbol-button"
+                data-symbol="BINANCE:SOLUSDT"
+                data-name="SOLUSDT price"
+              >
+                <span class="symbol-icon solana-symbol">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M5 7.2h13.2c.8 0 1.2 1 .6 1.6l-2.3 2.2H3.3c-.8 0-1.2-1-.6-1.6L5 7.2Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M19 12.8H5.8c-.8 0-1.2-1-.6-1.6l2.3-2.2h13.2c.8 0 1.2 1 .6 1.6L19 12.8Z"
+                      opacity=".7"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M5 15.2h13.2c.8 0 1.2 1 .6 1.6l-2.3 2.2H3.3c-.8 0-1.2-1-.6-1.6L5 15.2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                SOL / USDT
+              </button>
+
+              <!-- BNB (using BTCUSDT for demo) -->
+              <button
+                class="market-symbol-button"
+                data-symbol="BINANCE:BTCUSDT"
+                data-name="BTCUSDT price"
+              >
+                <span class="symbol-icon bnb-symbol">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="m12 2.8 2.1 2.1-5.8 5.8-2.1-2.1L12 2.8Zm4.1 4.1 2.1 2.1-5.8 5.8-2.1-2.1 5.8-5.8ZM7.9 11.1l2.1 2.1-4.1 4.1-2.1-2.1 4.1-4.1Zm8.2 4.1 2.1 2.1-4.1 4.1-2.1-2.1 4.1-4.1Z"
+                    />
+                  </svg>
+                </span>
+                BNB / USDT
+              </button>
+
+              <!-- XAU -->
+              <button
+                class="market-symbol-button"
+                data-symbol="IG:SPOTGOLD"
+                data-name="SPOTGOLD chart"
+              >
+                <span class="symbol-icon gold-symbol">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 3 4 7v3h16V7l-8-4Zm-6 9v7H4v2h16v-2h-2v-7h-3v7h-6v-7H6Zm6-6.2L15.2 8H8.8L12 5.8Z"
+                    />
+                  </svg>
+                </span>
+                XAU / USD
+              </button>
+
+              <!-- EUR -->
+              <button
+                class="market-symbol-button"
+                data-symbol="FOREXCOM:EURUSD"
+                data-name="EURUSD chart"
+              >
+                <span class="symbol-icon euro-symbol">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <path
+                      d="M19 7c-1.2-1.1-2.7-1.7-4.5-1.7-3.6 0-6.2 2.8-6.2 6.7s2.6 6.7 6.2 6.7c1.8 0 3.3-.6 4.5-1.7"
+                    />
+                    <path d="M5 10h8" />
+                    <path d="M5 14h7" />
+                  </svg>
+                </span>
+                EUR / USD
+              </button>
+            </div>
+
+            <!-- CHART MODE -->
+            <div class="chart-mode-switcher">
+              <button class="chart-mode-button active" data-mode="candles">
+                <svg
+                  class="chart-mode-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M5 4v16" />
+                  <rect x="3" y="8" width="4" height="7" rx="1" />
+                  <path d="M12 3v18" />
+                  <rect x="10" y="5" width="4" height="12" rx="1" />
+                  <path d="M19 4v16" />
+                  <rect x="17" y="10" width="4" height="6" rx="1" />
+                </svg>
+                <span>Live Candles</span>
+              </button>
+
+              <button class="chart-mode-button" data-mode="indicators">
+                <svg
+                  class="chart-mode-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline
+                    points="3 12 7 12 10 5 14 19 17 12 21 12"
+                  ></polyline>
+                </svg>
+                <span>AI Indicators</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ADVANCED CHART CONTAINER -->
+          <div
+            class="advanced-chart-container"
+            id="advancedChartContainer"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TradingView Mini Chart Script -->
+    <script
+      type="module"
+      src="https://widgets.tradingview-widget.com/w/en/tv-mini-chart.js"
+    ></script>
+
+    <script>
+      /* ---------- CONFIGURATIONS ---------- */
+      const marketChartConfigurations = {
+        "PYTH:BTCUSD": {
+          symbol: "PYTH:BTCUSD",
+          title: "Bitcoin price",
+          url: "https://www.tradingview.com/symbols/BTCUSD/?exchange=PYTH",
+        },
+        "BITSTAMP:ETHUSD": {
+          symbol: "BITSTAMP:ETHUSD",
+          title: "Ethereum price",
+          url: "https://www.tradingview.com/symbols/ETHUSD/?exchange=BITSTAMP",
+        },
+        "BINANCE:SOLUSDT": {
+          symbol: "BINANCE:SOLUSDT",
+          title: "SOLUSDT price",
+          url: "https://www.tradingview.com/symbols/SOLUSDT/?exchange=BINANCE",
+        },
+        "BINANCE:BTCUSDT": {
+          symbol: "BINANCE:BTCUSDT",
+          title: "BTCUSDT price",
+          url: "https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE",
+        },
+        "IG:SPOTGOLD": {
+          symbol: "IG:SPOTGOLD",
+          title: "SPOTGOLD chart",
+          url: "https://www.tradingview.com/symbols/SPOTGOLD/?exchange=IG",
+        },
+        "FOREXCOM:EURUSD": {
+          symbol: "FOREXCOM:EURUSD",
+          title: "EURUSD chart",
+          url: "https://www.tradingview.com/symbols/EURUSD/?exchange=FOREXCOM",
+        },
+      };
+
+      /* ---------- LOAD ADVANCED CHART ---------- */
+      function loadMarketChart(symbol) {
+        const chartContainer = document.getElementById(
+          "advancedChartContainer",
+        );
+        const configuration = marketChartConfigurations[symbol];
+        if (!configuration) return;
+
+        chartContainer.innerHTML = "";
+
+        const widgetContainer = document.createElement("div");
+        widgetContainer.className = "tradingview-widget-container";
+        widgetContainer.style.width = "100%";
+        widgetContainer.style.height = "100%";
+
+        const widgetArea = document.createElement("div");
+        widgetArea.className = "tradingview-widget-container__widget";
+        widgetArea.style.width = "100%";
+        widgetArea.style.height = "calc(100% - 32px)";
+
+        const copyright = document.createElement("div");
+        copyright.className = "tradingview-widget-copyright";
+        copyright.innerHTML = `
+        <a href="${configuration.url}" rel="noopener nofollow" target="_blank">${configuration.title}</a>
+        <span class="trademark">by TradingView</span>
+      `;
+
+        const tradingViewScript = document.createElement("script");
+        tradingViewScript.type = "text/javascript";
+        tradingViewScript.src =
+          "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+        tradingViewScript.async = true;
+        tradingViewScript.innerHTML = JSON.stringify({
+          allow_symbol_change: true,
+          calendar: false,
+          details: false,
+          hide_side_toolbar: false,
+          hide_top_toolbar: false,
+          hide_legend: false,
+          hide_volume: false,
+          hotlist: false,
+          interval: "D",
+          locale: "en",
+          save_image: true,
+          style: "1",
+          symbol: configuration.symbol,
+          theme: "dark",
+          timezone: "Etc/UTC",
+          backgroundColor: "#0F0F0F",
+          gridColor: "rgba(242, 242, 242, 0.2)",
+          watchlist: [],
+          withdateranges: true,
+          compareSymbols: [],
+          support_host: "https://www.tradingview.com",
+          studies: [],
+          autosize: true,
+        });
+
+        widgetContainer.appendChild(widgetArea);
+        widgetContainer.appendChild(copyright);
+        widgetContainer.appendChild(tradingViewScript);
+        chartContainer.appendChild(widgetContainer);
+      }
+
+      /* ---------- SYMBOL BUTTONS ---------- */
+      const marketSymbolButtons = document.querySelectorAll(
+        ".market-symbol-button",
+      );
+      marketSymbolButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          marketSymbolButtons.forEach(function (item) {
+            item.classList.remove("active");
+          });
+          this.classList.add("active");
+          const selectedSymbol = this.getAttribute("data-symbol");
+          loadMarketChart(selectedSymbol);
+        });
+      });
+
+      /* ---------- CHART MODE BUTTONS (works with a console note; demo only) ---------- */
+      const chartModeButtons = document.querySelectorAll(".chart-mode-button");
+      chartModeButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          chartModeButtons.forEach(function (item) {
+            item.classList.remove("active");
+          });
+          this.classList.add("active");
+          const mode = this.getAttribute("data-mode");
+          // In a full implementation, you would apply different studies here.
+          console.log(
+            `Mode switched: ${mode === "indicators" ? "AI Indicators" : "Live Candles"}`,
+          );
+        });
+      });
+
+      /* ---------- INITIAL CHART ---------- */
+      loadMarketChart("PYTH:BTCUSD");
+    </script>
+  </body>
+</html>
+
+<!-- ------algorithim ---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algorithmic Trading & Liquidity Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =========================================================
+       SECTION — ALGORITHMIC INTELLIGENCE
+    ========================================================= */
+      .algorithmic-liquidity-section {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 55px 24px 60px;
+        background: #09090d;
+        overflow: hidden;
+      }
+
+      /* LEFT GOLD GLOW */
+      .algorithmic-liquidity-section::before {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        left: -140px;
+        top: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(184, 143, 44, 0.11) 0%,
+          rgba(184, 143, 44, 0.04) 30%,
+          rgba(184, 143, 44, 0) 70%
+        );
+        filter: blur(18px);
+        pointer-events: none;
+      }
+
+      /* RIGHT GREEN GLOW */
+      .algorithmic-liquidity-section::after {
+        content: "";
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        right: -110px;
+        top: 300px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 177, 141, 0.09) 0%,
+          rgba(0, 177, 141, 0.03) 35%,
+          rgba(0, 177, 141, 0) 70%
+        );
+        filter: blur(22px);
+        pointer-events: none;
+      }
+
+      /* =========================================================
+       CONTAINER
+    ========================================================= */
+      .algorithmic-liquidity-container {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 880px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* =========================================================
+       BADGE
+    ========================================================= */
+      .institutional-grade-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 32px;
+        padding: 5px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(207, 164, 45, 0.35);
+        background: rgba(49, 39, 13, 0.35);
+        color: #dfb83f;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+        box-shadow: inset 0 0 12px rgba(220, 176, 43, 0.02);
+        transition: border-color 0.2s ease;
+      }
+
+      .institutional-grade-badge:hover {
+        border-color: rgba(207, 164, 45, 0.55);
+      }
+
+      .institutional-grade-badge-icon {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 14px;
+      }
+
+      /* =========================================================
+       HEADING
+    ========================================================= */
+      .algorithmic-liquidity-heading {
+        max-width: 820px;
+        margin-top: 28px;
+        font-size: clamp(28px, 3.2vw, 48px);
+        line-height: 1.2;
+        font-weight: 900;
+        letter-spacing: -1.2px;
+      }
+
+      .algorithmic-heading-white {
+        color: #f5f5f6;
+      }
+
+      .algorithmic-heading-gold {
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      /* =========================================================
+       DESCRIPTION
+    ========================================================= */
+      .algorithmic-liquidity-description {
+        max-width: 800px;
+        margin-top: 24px;
+        color: #c8c9cf;
+        font-size: 16px;
+        line-height: 1.65;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+      }
+
+      /* =========================================================
+       BENEFIT LIST
+    ========================================================= */
+      .institutional-benefit-list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      /* =========================================================
+       BENEFIT CARD
+    ========================================================= */
+      .institutional-benefit-card {
+        width: 100%;
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        padding: 14px 18px;
+        text-align: left;
+        border: 1px solid #22242c;
+        border-radius: 16px;
+        background: rgba(10, 10, 14, 0.8);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.01);
+        transition:
+          border-color 0.22s ease,
+          transform 0.22s ease,
+          background 0.22s ease;
+      }
+
+      .institutional-benefit-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(223, 187, 72, 0.22);
+        background: rgba(13, 13, 18, 0.92);
+      }
+
+      /* =========================================================
+       ICON FRAME
+    ========================================================= */
+      .benefit-icon-frame {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        border-radius: 11px;
+        background: #0c1817;
+        border: 1px solid rgba(0, 210, 160, 0.28);
+        color: #00d3a0;
+        transition: background 0.2s ease;
+      }
+
+      .benefit-icon-frame svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* GOLD ICON */
+      .benefit-icon-gold {
+        background: #19150c;
+        border-color: rgba(211, 167, 39, 0.26);
+        color: #e0b52d;
+      }
+
+      /* BLUE ICON */
+      .benefit-icon-blue {
+        background: #0c1628;
+        border-color: rgba(42, 120, 220, 0.32);
+        color: #4195ff;
+      }
+
+      /* =========================================================
+       BENEFIT COPY
+    ========================================================= */
+      .benefit-copy {
+        min-width: 0;
+      }
+
+      .benefit-title {
+        color: #f0f0f2;
+        font-size: 14px;
+        line-height: 1.35;
+        font-weight: 700;
+        letter-spacing: -0.1px;
+      }
+
+      .benefit-description {
+        margin-top: 3px;
+        color: #9397a2;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 400;
+      }
+
+      /* =========================================================
+       CTA ROW
+    ========================================================= */
+      .algorithmic-action-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+      }
+
+      /* PRIMARY CTA */
+      .algorithmic-primary-button {
+        height: 46px;
+        min-width: 190px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 22px;
+        border-radius: 10px;
+        border: 1px solid #d3a823;
+        background: linear-gradient(
+          135deg,
+          #d4a921 0%,
+          #dfb52e 55%,
+          #d0a31c 100%
+        );
+        color: #080808;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.22s ease,
+          box-shadow 0.22s ease,
+          filter 0.22s ease;
+      }
+
+      .algorithmic-primary-button:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.06);
+        box-shadow: 0 8px 24px rgba(211, 168, 35, 0.12);
+      }
+
+      .algorithmic-primary-button svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* SECONDARY CTA */
+      .algorithmic-secondary-button {
+        height: 46px;
+        min-width: 200px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        border-radius: 10px;
+        border: 1px solid #262832;
+        background: rgba(10, 10, 14, 0.7);
+        color: #cecfd4;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition:
+          border-color 0.22s ease,
+          background 0.22s ease,
+          color 0.22s ease;
+      }
+
+      .algorithmic-secondary-button:hover {
+        border-color: #3f424e;
+        background: #111116;
+        color: #eeeef0;
+      }
+
+      /* =========================================================
+       TABLET (≤ 800px)
+    ========================================================= */
+      @media (max-width: 800px) {
+        .algorithmic-liquidity-section {
+          padding: 22px 20px 55px;
+        }
+
+        .algorithmic-liquidity-heading {
+          font-size: clamp(26px, 5vw, 34px);
+          letter-spacing: -1px;
+        }
+
+        .algorithmic-liquidity-description {
+          font-size: 13.5px;
+        }
+
+        .institutional-benefit-list {
+          margin-top: 28px;
+          gap: 12px;
+        }
+
+        .institutional-benefit-card {
+          padding: 13px 16px;
+        }
+
+        .benefit-title {
+          font-size: 12.5px;
+        }
+
+        .benefit-description {
+          font-size: 11.5px;
+        }
+      }
+
+      /* =========================================================
+       MOBILE (≤ 600px)
+    ========================================================= */
+      @media (max-width: 600px) {
+        .algorithmic-liquidity-section {
+          min-height: auto;
+          padding: 20px 15px 50px;
+        }
+
+        .algorithmic-liquidity-section::before,
+        .algorithmic-liquidity-section::after {
+          opacity: 0.6;
+        }
+
+        .institutional-grade-badge {
+          min-height: 30px;
+          padding: 5px 12px;
+          font-size: 9px;
+          gap: 6px;
+        }
+
+        .institutional-grade-badge-icon {
+          width: 12px;
+          height: 12px;
+          flex-basis: 12px;
+        }
+
+        .algorithmic-liquidity-heading {
+          margin-top: 22px;
+          font-size: 28px;
+          line-height: 1.16;
+          letter-spacing: -0.9px;
+        }
+
+        .algorithmic-liquidity-description {
+          margin-top: 20px;
+          font-size: 13px;
+          line-height: 1.6;
+        }
+
+        .institutional-benefit-list {
+          gap: 10px;
+          margin-top: 26px;
+        }
+
+        .institutional-benefit-card {
+          min-height: 80px;
+          padding: 13px 14px;
+          border-radius: 14px;
+        }
+
+        .benefit-icon-frame {
+          width: 38px;
+          height: 38px;
+          flex-basis: 38px;
+          margin-right: 12px;
+          border-radius: 10px;
+        }
+
+        .benefit-icon-frame svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .benefit-title {
+          font-size: 12px;
+          line-height: 1.3;
+        }
+
+        .benefit-description {
+          font-size: 10.5px;
+          line-height: 1.4;
+        }
+
+        .algorithmic-action-row {
+          width: 100%;
+          flex-direction: column;
+          gap: 10px;
+          margin-top: 28px;
+        }
+
+        .algorithmic-primary-button,
+        .algorithmic-secondary-button {
+          width: 100%;
+          max-width: 320px;
+          height: 46px;
+          font-size: 12.5px;
+        }
+
+        .algorithmic-primary-button svg {
+          width: 13px;
+          height: 13px;
+        }
+      }
+
+      /* =========================================================
+       VERY SMALL (≤ 380px)
+    ========================================================= */
+      @media (max-width: 380px) {
+        .algorithmic-liquidity-heading {
+          font-size: 24px;
+          letter-spacing: -0.7px;
+        }
+
+        .benefit-icon-frame {
+          width: 34px;
+          height: 34px;
+          flex-basis: 34px;
+          margin-right: 10px;
+        }
+
+        .benefit-icon-frame svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        .benefit-title {
+          font-size: 11px;
+        }
+
+        .benefit-description {
+          font-size: 10px;
+        }
+
+        .institutional-benefit-card {
+          min-height: 74px;
+          padding: 12px;
+        }
+
+        .algorithmic-primary-button,
+        .algorithmic-secondary-button {
+          height: 44px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="algorithmic-liquidity-section">
+      <div class="algorithmic-liquidity-container">
+        <!-- BADGE -->
+        <div class="institutional-grade-badge">
+          <svg
+            class="institutional-grade-badge-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 2v5" />
+            <path d="M12 17v5" />
+            <path d="M2 12h5" />
+            <path d="M17 12h5" />
+            <path d="m4.9 4.9 3.5 3.5" />
+            <path d="m15.6 15.6 3.5 3.5" />
+            <path d="m19.1 4.9-3.5 3.5" />
+            <path d="m8.4 15.6-3.5 3.5" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          <span>INSTITUTIONAL-GRADE INFRASTRUCTURE</span>
+        </div>
+
+        <!-- HEADING -->
+        <h1 class="algorithmic-liquidity-heading">
+          <span class="algorithmic-heading-white"
+            >Algorithmic Trading &amp;</span
+          >
+          <span class="algorithmic-heading-gold">Liquidity Intelligence</span>
+        </h1>
+
+        <!-- DESCRIPTION -->
+        <p class="algorithmic-liquidity-description">
+          Every dollar committed to the Solvex Trading Pool is deployed across
+          institutional cross-exchange arbitrage, automated liquidity
+          provisioning, and systematic quantitative algorithms — producing
+          stable, predictable daily yield.
+        </p>
+
+        <!-- BENEFIT CARDS -->
+        <div class="institutional-benefit-list">
+          <!-- STOP LOSS -->
+          <article class="institutional-benefit-card">
+            <div class="benefit-icon-frame">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 3 20 6v5c0 5.1-3.4 8.5-8 10-4.6-1.5-8-4.9-8-10V6l8-3Z"
+                />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+            <div class="benefit-copy">
+              <h2 class="benefit-title">
+                Automated Stop-Loss &amp; Capital Preservation
+              </h2>
+              <p class="benefit-description">
+                Strict max-drawdown rules ensure pool principal is shielded
+                against extreme market volatility.
+              </p>
+            </div>
+          </article>
+
+          <!-- CROSS HEDGING -->
+          <article class="institutional-benefit-card">
+            <div class="benefit-icon-frame benefit-icon-gold">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z" />
+              </svg>
+            </div>
+            <div class="benefit-copy">
+              <h2 class="benefit-title">Multi-Asset Cross Hedging</h2>
+              <p class="benefit-description">
+                Strategies span Spot Crypto, Perpetuals, Spot Gold (XAU/USD),
+                and Global Macro FX pairs.
+              </p>
+            </div>
+          </article>
+
+          <!-- DAILY ROI -->
+          <article class="institutional-benefit-card">
+            <div class="benefit-icon-frame benefit-icon-blue">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M5 20V12" />
+                <path d="M12 20V7" />
+                <path d="M19 20V4" />
+              </svg>
+            </div>
+            <div class="benefit-copy">
+              <h2 class="benefit-title">Automated Daily ROI Crediting</h2>
+              <p class="benefit-description">
+                Yields generated by trading desks are automatically credited
+                daily to your member wallet at midnight.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <!-- CTA BUTTONS -->
+        <div class="algorithmic-action-row">
+          <a href="#trading-pool" class="algorithmic-primary-button">
+            <span>Join Trading Pool</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m13 6 6 6-6 6" />
+            </svg>
+          </a>
+          <a href="#market-feeds" class="algorithmic-secondary-button"
+            >View Live Market Feeds</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <script>
+      /* =========================================================
+     SMOOTH SCROLL FOR CTA BUTTONS
+  ========================================================= */
+      document
+        .querySelectorAll(
+          ".algorithmic-primary-button, .algorithmic-secondary-button",
+        )
+        .forEach(function (button) {
+          button.addEventListener("click", function (event) {
+            const target = this.getAttribute("href");
+            if (target && target.startsWith("#")) {
+              const destination = document.querySelector(target);
+              if (destination) {
+                event.preventDefault();
+                destination.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
+
+<!-- ------- Return----- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>How SolveX Generates Returns</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       RESET
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: #09090d !important;
+        color: #f5f5f5;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* =========================================================
+       RETURN GENERATION SECTION
+    ========================================================= */
+
+      .return-generation-section {
+        position: relative;
+
+        width: 100%;
+        min-height: 710px;
+
+        display: flex;
+        justify-content: center;
+
+        padding: 150px 24px 66px;
+
+        background: #09090d !important;
+
+        border-top: 1px solid #22232a;
+
+        overflow: hidden;
+      }
+
+      /* =========================================================
+       SUBTLE SIDE GLOW
+    ========================================================= */
+
+      .return-generation-section::before {
+        content: "";
+
+        position: absolute;
+
+        width: 500px;
+        height: 500px;
+
+        left: -260px;
+        top: 160px;
+
+        border-radius: 50%;
+
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.025) 0%,
+          transparent 70%
+        );
+
+        pointer-events: none;
+      }
+
+      .return-generation-section::after {
+        content: "";
+
+        position: absolute;
+
+        width: 450px;
+        height: 450px;
+
+        right: -250px;
+        bottom: -180px;
+
+        border-radius: 50%;
+
+        background: radial-gradient(
+          circle,
+          rgba(0, 190, 160, 0.018) 0%,
+          transparent 70%
+        );
+
+        pointer-events: none;
+      }
+
+      /* =========================================================
+       MAIN CONTENT
+    ========================================================= */
+
+      .return-generation-container {
+        position: relative;
+        z-index: 2;
+
+        width: 100%;
+        max-width: 950px;
+
+        margin: 0 auto;
+
+        text-align: center;
+      }
+
+      /* =========================================================
+       MAIN HEADING
+    ========================================================= */
+
+      .return-generation-heading {
+        color: #f5f5f6;
+        font-size: clamp(45px, 4.25vw, 48px);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      /* =========================================================
+       DESCRIPTION
+    ========================================================= */
+
+      .return-generation-introduction {
+        max-width: 930px;
+
+        margin: 25px auto 0;
+
+        color: #d2d3d8;
+
+        font-size: 17px;
+
+        line-height: 1.58;
+
+        font-weight: 400;
+
+        letter-spacing: -0.15px;
+      }
+
+      /* =========================================================
+       INFORMATION CARDS
+    ========================================================= */
+
+      .return-method-grid {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        gap: 26px;
+
+        margin-top: 47px;
+      }
+
+      /* =========================================================
+       INDIVIDUAL INFORMATION CARD
+    ========================================================= */
+
+      .return-method-card {
+        min-height: 214px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 21px 17px 20px;
+
+        border: 1px solid #25262e;
+
+        border-radius: 16px;
+
+        background: #0a0a0f !important;
+
+        transition:
+          border-color 0.25s ease,
+          transform 0.25s ease,
+          background 0.25s ease;
+      }
+
+      .return-method-card:hover {
+        transform: translateY(-2px);
+
+        border-color: rgba(223, 187, 72, 0.25);
+
+        background: #0c0c11 !important;
+      }
+
+      /* =========================================================
+       CARD HEADING
+    ========================================================= */
+
+      .return-method-title {
+        width: 100%;
+
+        color: #f3f3f4;
+
+        font-size: 20px;
+
+        line-height: 1.25;
+
+        font-weight: 800;
+
+        letter-spacing: -0.6px;
+      }
+
+      /* =========================================================
+       CARD DESCRIPTION
+    ========================================================= */
+
+      .return-method-description {
+        max-width: 255px;
+
+        margin-top: 12px;
+
+        color: #aeb2bd;
+
+        font-size: 15.5px;
+
+        line-height: 1.45;
+
+        font-weight: 400;
+
+        letter-spacing: -0.1px;
+      }
+
+      /* =========================================================
+       RESPONSIVE — TABLET
+    ========================================================= */
+
+      @media (max-width: 850px) {
+        .return-generation-section {
+          min-height: auto;
+
+          padding: 120px 22px 65px;
+        }
+
+        .return-generation-heading {
+          font-size: 46px;
+        }
+
+        .return-generation-introduction {
+          font-size: 16px;
+        }
+
+        .return-method-grid {
+          gap: 16px;
+        }
+
+        .return-method-card {
+          min-height: 220px;
+        }
+
+        .return-method-title {
+          font-size: 18px;
+        }
+
+        .return-method-description {
+          font-size: 14px;
+        }
+      }
+
+      /* =========================================================
+       RESPONSIVE — MOBILE
+    ========================================================= */
+
+      @media (max-width: 650px) {
+        .return-generation-section {
+          padding: 80px 15px 55px;
+        }
+
+        .return-generation-heading {
+          font-size: 36px;
+
+          line-height: 1.12;
+
+          letter-spacing: -1.8px;
+        }
+
+        .return-generation-introduction {
+          margin-top: 22px;
+
+          font-size: 15px;
+
+          line-height: 1.6;
+        }
+
+        .return-method-grid {
+          grid-template-columns: 1fr;
+
+          gap: 14px;
+
+          margin-top: 34px;
+        }
+
+        .return-method-card {
+          min-height: auto;
+
+          padding: 22px 18px 23px;
+        }
+
+        .return-method-title {
+          font-size: 18px;
+        }
+
+        .return-method-description {
+          max-width: 330px;
+
+          font-size: 14px;
+
+          line-height: 1.5;
+        }
+      }
+
+      /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+      @media (max-width: 400px) {
+        .return-generation-heading {
+          font-size: 32px;
+        }
+
+        .return-generation-introduction {
+          font-size: 14px;
+        }
+
+        .return-method-title {
+          font-size: 17px;
+        }
+
+        .return-method-description {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =======================================================
+       HOW SOLVEX GENERATES RETURNS
+  ======================================================== -->
+
+    <section class="return-generation-section">
+      <div class="return-generation-container">
+        <!-- MAIN HEADING -->
+
+        <h1 class="return-generation-heading">
+          How World of Forex Generates Returns
+        </h1>
+
+        <!-- INTRODUCTION -->
+
+        <p class="return-generation-introduction">
+          SolveX operates as an institutional-style group trading pool,
+          deploying pooled investor capital into the global Forex market through
+          a professional trading desk. Our team of experienced traders executes
+          structured, risk-managed strategies across major currency pairs,
+          generating consistent trading profits that are distributed back to
+          investors as scheduled returns.
+        </p>
+
+        <!-- =====================================================
+           THREE RETURN METHODS
+      ====================================================== -->
+
+        <div class="return-method-grid">
+          <!-- CARD 1 -->
+
+          <article class="return-method-card">
+            <h2 class="return-method-title">Group Forex Trading</h2>
+
+            <p class="return-method-description">
+              Investor funds are pooled together and actively traded in the
+              Forex market by our professional trading team, leveraging
+              institutional-grade strategies and risk management.
+            </p>
+          </article>
+
+          <!-- CARD 2 -->
+
+          <article class="return-method-card">
+            <h2 class="return-method-title">Transparent Distribution</h2>
+
+            <p class="return-method-description">
+              Trading profits generated from Forex operations are distributed to
+              investors according to their selected package and applicable ROI
+              schedule.
+            </p>
+          </article>
+
+          <!-- CARD 3 -->
+
+          <article class="return-method-card">
+            <h2 class="return-method-title">Risk-Managed Approach</h2>
+
+            <p class="return-method-description">
+              Our trading desk follows strict risk management protocols to
+              protect pooled capital while aiming for consistent, sustainable
+              returns across market cycles.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const returnCards = document.querySelectorAll(".return-method-card");
+
+        returnCards.forEach(function (card) {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-2px)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ---- ROI ---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Structured ROI Date Periods</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: #09090d !important;
+        color: #f4f4f5;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* =========================================================
+       ROI PERIOD SECTION
+    ========================================================= */
+
+      .roi-schedule-section {
+        position: relative;
+
+        width: 100%;
+        min-height: 693px;
+
+        padding: 36px 24px 80px;
+
+        background: #09090d !important;
+
+        border-top: 1px solid #292a31;
+
+        overflow: hidden;
+      }
+
+      /* =========================================================
+       SECTION CONTAINER
+    ========================================================= */
+
+      .roi-schedule-container {
+        width: 100%;
+        max-width: 1160px;
+
+        margin: 0 auto;
+      }
+
+      /* =========================================================
+       SECTION HEADER
+    ========================================================= */
+
+      .roi-schedule-header {
+        width: 100%;
+
+        text-align: center;
+
+        margin-bottom: 61px;
+      }
+
+      /* =========================================================
+       MAIN HEADING
+    ========================================================= */
+
+      .roi-schedule-title {
+        color: #f4f4f5;
+
+        font-size: clamp(34px, 3vw, 39px);
+
+        line-height: 1.15;
+
+        font-weight: 800;
+
+        letter-spacing: -1.5px;
+      }
+
+      .roi-title-gold {
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+
+        color: transparent;
+      }
+
+      /* =========================================================
+       INTRODUCTION
+    ========================================================= */
+
+      .roi-schedule-introduction {
+        max-width: 750px;
+
+        margin: 14px auto 0;
+
+        color: #9eabc0;
+
+        font-size: 17px;
+
+        line-height: 1.45;
+
+        font-weight: 400;
+
+        letter-spacing: -0.1px;
+      }
+
+      /* =========================================================
+       THREE PERIOD CARDS
+    ========================================================= */
+
+      .roi-period-grid {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        gap: 29px;
+      }
+
+      /* =========================================================
+       PERIOD CARD
+    ========================================================= */
+
+      .roi-period-card {
+        position: relative;
+
+        min-height: 389px;
+
+        padding: 31px 31px 30px;
+
+        border: 1px solid #2a2c35;
+
+        border-radius: 18px;
+
+        background: #0d0d12 !important;
+
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .roi-period-card:hover {
+        transform: translateY(-2px);
+
+        border-color: rgba(223, 187, 72, 0.35);
+
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+      }
+
+      /* =========================================================
+       ACTIVE PERIOD CARD
+    ========================================================= */
+
+      .roi-period-card.is-featured {
+        border-color: rgba(204, 158, 32, 0.75);
+
+        background: linear-gradient(
+          145deg,
+          #191713 0%,
+          #111116 55%,
+          #0d0d12 100%
+        ) !important;
+
+        box-shadow: inset 0 0 45px rgba(201, 157, 39, 0.025);
+      }
+
+      .roi-period-card.is-featured:hover {
+        border-color: rgba(229, 184, 48, 0.9);
+      }
+
+      /* =========================================================
+       CARD TOP ROW
+    ========================================================= */
+
+      .roi-period-header {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* =========================================================
+       PERIOD LABEL
+    ========================================================= */
+
+      .roi-period-label {
+        color: #dcb632;
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        letter-spacing: 0.2px;
+      }
+
+      /* =========================================================
+       CALENDAR ICON
+    ========================================================= */
+
+      .roi-calendar-icon {
+        width: 19px;
+        height: 19px;
+
+        color: #d9b12d;
+      }
+
+      /* =========================================================
+       PERIOD TITLE
+    ========================================================= */
+
+      .roi-period-title {
+        margin-top: 18px;
+        color: #f4f4f5;
+        font-size: 23px;
+        line-height: 1.3;
+        font-weight: 700;
+        letter-spacing: -0.8px;
+      }
+
+      /* =========================================================
+       DATE RANGE
+    ========================================================= */
+
+      .roi-period-date {
+        margin-top: 10px;
+
+        color: #a4a7b1;
+
+        font-size: 14px;
+
+        line-height: 1.3;
+
+        font-weight: 400;
+
+        letter-spacing: 0.1px;
+      }
+
+      /* =========================================================
+       ROI PACKAGE LIST
+    ========================================================= */
+
+      .roi-package-list {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        margin-top: 31px;
+      }
+
+      /* =========================================================
+       PACKAGE ROW
+    ========================================================= */
+
+      .roi-package-row {
+        width: 100%;
+
+        min-height: 57px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 15px;
+
+        padding: 0 15px;
+
+        border: 1px solid #272932;
+
+        border-radius: 14px;
+
+        background: #0a0a0f !important;
+      }
+
+      /* =========================================================
+       PACKAGE AMOUNT
+    ========================================================= */
+
+      .roi-package-amount {
+        color: #c7c8ce;
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        white-space: nowrap;
+      }
+
+      /* =========================================================
+       ROI RATE
+    ========================================================= */
+
+      .roi-package-rate {
+        color: #00dba0;
+        font-size: 14px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      /* =========================================================
+       PERIOD C SINGLE PACKAGE
+    ========================================================= */
+
+      .roi-single-package {
+        margin-top: 31px;
+      }
+
+      /* =========================================================
+       PERIOD NOTE
+    ========================================================= */
+
+      .roi-period-note {
+        margin-top: 16px;
+
+        padding-top: 10px;
+
+        border-top: 1px solid #24262d;
+
+        color: #8e929d;
+
+        font-size: 14px;
+
+        line-height: 1.55;
+
+        font-weight: 400;
+      }
+
+      /* =========================================================
+       TABLET
+    ========================================================= */
+
+      @media (max-width: 1050px) {
+        .roi-schedule-section {
+          padding: 35px 20px 70px;
+        }
+
+        .roi-period-grid {
+          gap: 18px;
+        }
+
+        .roi-period-card {
+          padding: 27px 22px;
+        }
+
+        .roi-period-title {
+          font-size: 22px;
+        }
+
+        .roi-package-amount {
+          font-size: 14px;
+        }
+
+        .roi-package-rate {
+          font-size: 16px;
+        }
+      }
+
+      /* =========================================================
+       MOBILE
+    ========================================================= */
+
+      @media (max-width: 750px) {
+        .roi-schedule-section {
+          min-height: auto;
+
+          padding: 55px 15px 60px;
+        }
+
+        .roi-schedule-header {
+          margin-bottom: 35px;
+        }
+
+        .roi-schedule-title {
+          font-size: 32px;
+
+          line-height: 1.15;
+
+          letter-spacing: -1.3px;
+        }
+
+        .roi-schedule-introduction {
+          margin-top: 15px;
+
+          font-size: 15px;
+
+          line-height: 1.55;
+        }
+
+        .roi-period-grid {
+          grid-template-columns: 1fr;
+
+          gap: 15px;
+        }
+
+        .roi-period-card {
+          min-height: auto;
+
+          padding: 25px 20px;
+        }
+
+        .roi-period-title {
+          font-size: 23px;
+        }
+
+        .roi-period-date {
+          font-size: 13px;
+        }
+
+        .roi-package-list,
+        .roi-single-package {
+          margin-top: 25px;
+        }
+
+        .roi-package-row {
+          min-height: 55px;
+
+          padding: 0 13px;
+        }
+
+        .roi-package-amount {
+          font-size: 13px;
+        }
+
+        .roi-package-rate {
+          font-size: 15px;
+        }
+
+        .roi-period-note {
+          font-size: 13px;
+        }
+      }
+
+      /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+      @media (max-width: 390px) {
+        .roi-schedule-title {
+          font-size: 29px;
+        }
+
+        .roi-period-card {
+          padding: 22px 17px;
+        }
+
+        .roi-period-title {
+          font-size: 21px;
+        }
+
+        .roi-package-amount {
+          font-size: 12px;
+        }
+
+        .roi-package-rate {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =======================================================
+       STRUCTURED ROI DATE PERIODS
+  ======================================================== -->
+
+    <section class="roi-schedule-section">
+      <div class="roi-schedule-container">
+        <!-- =====================================================
+           HEADER
+      ====================================================== -->
+
+        <header class="roi-schedule-header">
+          <h1 class="roi-schedule-title">
+            Structured
+            <span class="roi-title-gold"> ROI Date Periods </span>
+          </h1>
+
+          <p class="roi-schedule-introduction">
+            Our trading schedule evolves over 3 distinct periods, balancing high
+            aggressive early yields with long-term capital sustainability.
+          </p>
+        </header>
+
+        <!-- =====================================================
+           PERIOD CARDS
+      ====================================================== -->
+
+        <div class="roi-period-grid">
+          <!-- ===================================================
+             PERIOD A
+        ==================================================== -->
+
+          <article class="roi-period-card is-featured">
+            <div class="roi-period-header">
+              <span class="roi-period-label"> PERIOD A </span>
+
+              <svg
+                class="roi-calendar-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+
+                <path d="M16 2v4" />
+                <path d="M8 2v4" />
+                <path d="M3 10h18" />
+              </svg>
+            </div>
+
+            <h2 class="roi-period-title">High Growth Phase</h2>
+
+            <div class="roi-period-date">Sep 10, 2026 – Dec 31, 2026</div>
+
+            <div class="roi-package-list">
+              <div class="roi-package-row">
+                <span class="roi-package-amount"> $100 – $1,000 </span>
+
+                <span class="roi-package-rate"> 0.75% Daily </span>
+              </div>
+
+              <div class="roi-package-row">
+                <span class="roi-package-amount"> $2,000 – $5,000 </span>
+
+                <span class="roi-package-rate"> 1.0% Daily </span>
+              </div>
+
+              <div class="roi-package-row">
+                <span class="roi-package-amount"> $7,000 – $10,000 </span>
+
+                <span class="roi-package-rate"> 1.25% Daily </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===================================================
+             PERIOD B
+        ==================================================== -->
+
+          <article class="roi-period-card">
+            <div class="roi-period-header">
+              <span class="roi-period-label"> PERIOD B </span>
+
+              <svg
+                class="roi-calendar-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+
+                <path d="M16 2v4" />
+                <path d="M8 2v4" />
+                <path d="M3 10h18" />
+              </svg>
+            </div>
+
+            <h2 class="roi-period-title">Consolidation Phase</h2>
+
+            <div class="roi-period-date">Jan 01, 2027 – Apr 30, 2027</div>
+
+            <div class="roi-package-list">
+              <div class="roi-package-row">
+                <span class="roi-package-amount"> $100 – $1,000 </span>
+
+                <span class="roi-package-rate"> 0.5% Daily </span>
+              </div>
+
+              <div class="roi-package-row">
+                <span class="roi-package-amount"> $2,000 – $5,000 </span>
+
+                <span class="roi-package-rate"> 0.75% Daily </span>
+              </div>
+
+              <div class="roi-package-row">
+                <span class="roi-package-amount"> $7,000 – $10,000 </span>
+
+                <span class="roi-package-rate"> 1.0% Daily </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ===================================================
+             PERIOD C
+        ==================================================== -->
+
+          <article class="roi-period-card">
+            <div class="roi-period-header">
+              <span class="roi-period-label"> PERIOD C </span>
+
+              <svg
+                class="roi-calendar-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+
+                <path d="M16 2v4" />
+                <path d="M8 2v4" />
+                <path d="M3 10h18" />
+              </svg>
+            </div>
+
+            <h2 class="roi-period-title">Perpetual Yield Phase</h2>
+
+            <div class="roi-period-date">May 01, 2027 Onwards</div>
+
+            <div class="roi-single-package">
+              <div class="roi-package-row">
+                <span class="roi-package-amount"> All Packages ($100+) </span>
+
+                <span class="roi-package-rate"> 8.0% Monthly </span>
+              </div>
+            </div>
+
+            <p class="roi-period-note">
+              This 8% Monthly rate applies only to Investor accounts.
+              Networker/Affiliate plan rates remain unchanged and are not
+              affected by this phase.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const periodCards = document.querySelectorAll(".roi-period-card");
+
+        periodCards.forEach(function (card) {
+          card.addEventListener("mouseenter", function () {
+            this.style.transition =
+              "transform .25s ease, border-color .25s ease, box-shadow .25s ease";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ------ affailated Distirubtion ------ -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>21-Level Affiliate Distribution</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* =========================================================
+       AFFILIATE DISTRIBUTION SECTION
+    ========================================================= */
+
+      .affiliate-distribution-section {
+        position: relative;
+
+        width: 100%;
+        min-height: 742px;
+
+        padding: 53px 24px 35px;
+
+        background: #09090d !important;
+
+        overflow: hidden;
+      }
+
+      /* =========================================================
+       MAIN WRAPPER
+    ========================================================= */
+
+      .affiliate-distribution-container {
+        width: 100%;
+        max-width: 1220px;
+
+        margin: 0 auto;
+      }
+
+      /* =========================================================
+       SECTION HEADER
+    ========================================================= */
+
+      .affiliate-distribution-header {
+        width: 100%;
+
+        text-align: center;
+
+        margin-bottom: 48px;
+      }
+
+      /* =========================================================
+       MAIN TITLE
+    ========================================================= */
+
+      .affiliate-distribution-title {
+        color: #f5f5f6;
+
+        font-size: clamp(32px, 3vw, 37px);
+
+        line-height: 1.15;
+
+        font-weight: 800;
+
+        letter-spacing: -1.4px;
+      }
+
+      .affiliate-title-gold {
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+
+        color: transparent;
+      }
+
+      /* =========================================================
+       HEADER DESCRIPTION
+    ========================================================= */
+
+      .affiliate-distribution-subtitle {
+        max-width: 570px;
+
+        margin: 11px auto 0;
+
+        color: #91a9c4;
+
+        font-size: 14px;
+
+        line-height: 1.45;
+
+        font-weight: 400;
+      }
+
+      /* =========================================================
+       TWO-COLUMN CONTENT
+    ========================================================= */
+
+      .affiliate-information-grid {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 31px;
+      }
+
+      /* =========================================================
+       INFORMATION PANEL
+    ========================================================= */
+
+      .affiliate-information-panel {
+        min-height: 522px;
+
+        padding: 27px 24px 24px;
+
+        border: 1px solid #2a2c35;
+
+        border-radius: 15px;
+
+        background: #0d0d12 !important;
+
+        transition:
+          border-color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .affiliate-information-panel:hover {
+        border-color: rgba(223, 187, 72, 0.27);
+
+        transform: translateY(-1px);
+      }
+
+      /* =========================================================
+       PANEL HEADER
+    ========================================================= */
+
+      .affiliate-panel-heading {
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-bottom: 21px;
+      }
+
+      .affiliate-panel-heading-icon {
+        width: 17px;
+        height: 17px;
+
+        flex: 0 0 17px;
+
+        color: #d9af28;
+      }
+
+      .affiliate-panel-title {
+        color: #f2f2f4;
+
+        font-size: 18px;
+
+        line-height: 1.25;
+
+        font-weight: 800;
+
+        letter-spacing: -0.4px;
+      }
+
+      /* =========================================================
+       DATA ROWS
+    ========================================================= */
+
+      .affiliate-data-list {
+        width: 100%;
+      }
+
+      .affiliate-data-row {
+        width: 100%;
+
+        min-height: 37px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+
+        border-bottom: 1px solid #25262e;
+      }
+
+      .affiliate-data-row:last-child {
+        border-bottom: none;
+      }
+
+      .affiliate-data-label {
+        color: #c3c6cf;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        line-height: 1.3;
+      }
+
+      .affiliate-data-value {
+        color: #00dba0;
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        line-height: 1.3;
+
+        text-align: right;
+
+        white-space: nowrap;
+      }
+
+      /* =========================================================
+       GOLD UNLOCK VALUES
+    ========================================================= */
+
+      .affiliate-unlock-value {
+        color: #dfbb48;
+      }
+
+      /* =========================================================
+       GOLD INFORMATION NOTE
+    ========================================================= */
+
+      .affiliate-highlight-note {
+        width: 100%;
+
+        min-height: 41px;
+
+        display: flex;
+
+        align-items: center;
+
+        padding: 8px 12px;
+
+        margin-top: 15px;
+
+        border: 1px solid rgba(203, 158, 38, 0.3);
+
+        border-radius: 11px;
+
+        background: #201d17 !important;
+
+        color: #dcb94d;
+
+        font-size: 12px;
+
+        line-height: 1.4;
+
+        font-weight: 500;
+      }
+
+      /* =========================================================
+       BLUE INFORMATION NOTE
+    ========================================================= */
+
+      .affiliate-blue-note {
+        width: 100%;
+
+        min-height: 41px;
+
+        display: flex;
+
+        align-items: center;
+
+        padding: 8px 12px;
+
+        margin-top: 15px;
+
+        border: 1px solid rgba(47, 116, 201, 0.43);
+
+        border-radius: 11px;
+
+        background: #111b2c !important;
+
+        color: #72b2f3;
+
+        font-size: 12px;
+
+        line-height: 1.4;
+
+        font-weight: 500;
+      }
+
+      /* =========================================================
+       RIGHT PANEL — MORE COMPACT ROWS
+    ========================================================= */
+
+      .affiliate-opening-rules .affiliate-data-row {
+        min-height: 37px;
+      }
+
+      /* =========================================================
+       RESPONSIVE TABLET
+    ========================================================= */
+
+      @media (max-width: 900px) {
+        .affiliate-distribution-section {
+          min-height: auto;
+
+          padding: 50px 20px 55px;
+        }
+
+        .affiliate-information-grid {
+          gap: 18px;
+        }
+
+        .affiliate-information-panel {
+          padding: 25px 20px 22px;
+        }
+
+        .affiliate-panel-title {
+          font-size: 17px;
+        }
+      }
+
+      /* =========================================================
+       RESPONSIVE MOBILE
+    ========================================================= */
+
+      @media (max-width: 700px) {
+        .affiliate-distribution-section {
+          padding: 55px 15px 55px;
+        }
+
+        .affiliate-distribution-header {
+          margin-bottom: 32px;
+        }
+
+        .affiliate-distribution-title {
+          font-size: 30px;
+
+          line-height: 1.15;
+
+          letter-spacing: -1.1px;
+        }
+
+        .affiliate-distribution-subtitle {
+          max-width: 430px;
+
+          font-size: 13px;
+
+          line-height: 1.5;
+        }
+
+        .affiliate-information-grid {
+          grid-template-columns: 1fr;
+
+          gap: 15px;
+        }
+
+        .affiliate-information-panel {
+          min-height: auto;
+
+          padding: 23px 17px 22px;
+
+          border-radius: 15px;
+        }
+
+        .affiliate-panel-title {
+          font-size: 17px;
+        }
+
+        .affiliate-data-row {
+          min-height: 40px;
+
+          gap: 12px;
+        }
+
+        .affiliate-data-label {
+          font-size: 12px;
+        }
+
+        .affiliate-data-value {
+          font-size: 11px;
+        }
+
+        .affiliate-highlight-note,
+        .affiliate-blue-note {
+          font-size: 11px;
+        }
+      }
+
+      /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+      @media (max-width: 390px) {
+        .affiliate-distribution-title {
+          font-size: 27px;
+        }
+
+        .affiliate-information-panel {
+          padding: 21px 14px;
+        }
+
+        .affiliate-panel-title {
+          font-size: 15px;
+        }
+
+        .affiliate-data-label {
+          font-size: 11px;
+        }
+
+        .affiliate-data-value {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="affiliate-distribution-section">
+      <div class="affiliate-distribution-container">
+        <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+        <header class="affiliate-distribution-header">
+          <h1 class="affiliate-distribution-title">
+            21-Level
+            <span class="affiliate-title-gold"> Affiliate Distribution </span>
+          </h1>
+
+          <p class="affiliate-distribution-subtitle">
+            Total 80% level commission pool distributed across 21 generations.
+            Unlocking is strictly unlocked by active direct referrals.
+          </p>
+        </header>
+
+        <!-- =====================================================
+         TWO INFORMATION PANELS
+    ====================================================== -->
+
+        <div class="affiliate-information-grid">
+          <!-- ===================================================
+           LEFT — COMMISSION RATES
+      ==================================================== -->
+
+          <article class="affiliate-information-panel">
+            <div class="affiliate-panel-heading">
+              <!-- Layers SVG -->
+
+              <svg
+                class="affiliate-panel-heading-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m12 3 8 4-8 4-8-4 8-4Z" />
+                <path d="m4 12 8 4 8-4" />
+                <path d="m4 17 8 4 8-4" />
+              </svg>
+
+              <h2 class="affiliate-panel-title">
+                Level Commission Rates (80% Total)
+              </h2>
+            </div>
+
+            <div class="affiliate-data-list">
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 1 </span>
+
+                <span class="affiliate-data-value"> 25.0% </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 2 </span>
+
+                <span class="affiliate-data-value"> 15.0% </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 3 </span>
+
+                <span class="affiliate-data-value"> 10.0% </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 4 </span>
+
+                <span class="affiliate-data-value"> 5.0% </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 5 </span>
+
+                <span class="affiliate-data-value"> 5.0% </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 6–10 </span>
+
+                <span class="affiliate-data-value"> 2.0% each (10%) </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 11–20 </span>
+
+                <span class="affiliate-data-value"> 0.9% each (9%) </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> Level 21 </span>
+
+                <span class="affiliate-data-value"> 1.0% </span>
+              </div>
+            </div>
+
+            <!-- GOLD NOTE -->
+
+            <div class="affiliate-highlight-note">
+              L1–L5 carry the highest incentive weights (25%, 15%, 10%, 5%, 5% =
+              60%).
+            </div>
+          </article>
+
+          <!-- ===================================================
+           RIGHT — OPENING RULES
+      ==================================================== -->
+
+          <article class="affiliate-information-panel affiliate-opening-rules">
+            <div class="affiliate-panel-heading">
+              <!-- Users SVG -->
+
+              <svg
+                class="affiliate-panel-heading-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+
+              <h2 class="affiliate-panel-title">Level Opening Rules</h2>
+            </div>
+
+            <div class="affiliate-data-list">
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 1 Direct Referral </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  2 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 2 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  4 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 3 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  6 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 4 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  8 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 5 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  10 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 6 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  12 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 7 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  14 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 8 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  16 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 9 Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  18 Levels Unlocked
+                </span>
+              </div>
+
+              <div class="affiliate-data-row">
+                <span class="affiliate-data-label"> 10+ Direct Referrals </span>
+
+                <span class="affiliate-data-value affiliate-unlock-value">
+                  All 21 Levels Unlocked (Full Tree)
+                </span>
+              </div>
+            </div>
+
+            <!-- BLUE NOTE -->
+
+            <div class="affiliate-blue-note">
+              10 direct referrals unlock all 21 generations across your entire
+              organization.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      /* =========================================================
+     CARD INTERACTION
+  ========================================================= */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const panels = document.querySelectorAll(
+          ".affiliate-information-panel",
+        );
+
+        panels.forEach(function (panel) {
+          panel.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-1px)";
+          });
+
+          panel.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- -----Terms & Condition---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Terms & Conditions</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* body {
+        min-height: 100vh;
+        background: #09090d;
+        color: #d2d2d8;
+        font-family: "Inter", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      } */
+
+      /* =========================================================
+       TERMS & CONDITIONS SECTION
+    ========================================================= */
+
+      .terms-policy-section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 44px 24px 64px;
+        background: #09090d;
+        border-top: 1px solid #292a33;
+        border-bottom: 1px solid #292a33;
+      }
+
+      /* =========================================================
+       HEADER
+    ========================================================= */
+
+      .terms-policy-header {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto 40px;
+        text-align: center;
+      }
+
+      /* Small gold badge */
+
+      .terms-policy-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        min-height: 26px;
+        padding: 4px 14px;
+
+        border: 1px solid #5c4813;
+        border-radius: 999px;
+
+        background: rgba(212, 175, 55, 0.045);
+
+        color: #e0b52f;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.25px;
+        text-transform: uppercase;
+      }
+
+      .terms-policy-badge-icon {
+        width: 13px;
+        height: 13px;
+        display: block;
+        flex-shrink: 0;
+      }
+
+      /* Main heading */
+
+      .terms-policy-title {
+        margin-top: 13px;
+
+        color: #f3f3f5;
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.7px;
+      }
+
+      .terms-policy-title-highlight {
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      /* =========================================================
+       TERMS CARD
+    ========================================================= */
+
+      .terms-policy-card {
+        width: 100%;
+        max-width: 896px;
+        margin: 0 auto;
+
+        padding: 29px 31px 28px;
+
+        background: #111118;
+
+        border: 1px solid #30313b;
+        border-radius: 15px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      /* =========================================================
+       TERMS LIST
+    ========================================================= */
+
+      .terms-policy-list {
+        list-style: none;
+        width: 100%;
+      }
+
+      .terms-policy-item {
+        position: relative;
+
+        display: grid;
+        grid-template-columns: 9px 1fr;
+        column-gap: 12px;
+
+        width: 100%;
+
+        color: #ceced5;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.58;
+        letter-spacing: -0.05px;
+      }
+
+      .terms-policy-item + .terms-policy-item {
+        margin-top: 17px;
+      }
+
+      /* Gold bullet */
+
+      .terms-policy-bullet {
+        width: 8px;
+        height: 8px;
+
+        margin-top: 6px;
+
+        border-radius: 50%;
+        background: #d7b52f;
+
+        box-shadow: 0 0 7px rgba(215, 181, 47, 0.08);
+      }
+
+      .terms-policy-text {
+        display: block;
+      }
+
+      /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+      @media (max-width: 1000px) {
+        .terms-policy-section {
+          padding-top: 40px;
+        }
+
+        .terms-policy-header {
+          margin-bottom: 34px;
+        }
+
+        .terms-policy-card {
+          max-width: 896px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .terms-policy-section {
+          padding: 34px 16px 45px;
+        }
+
+        .terms-policy-header {
+          margin-bottom: 28px;
+        }
+
+        .terms-policy-badge {
+          font-size: 10px;
+          padding: 5px 11px;
+        }
+
+        .terms-policy-title {
+          margin-top: 12px;
+          font-size: 26px;
+          letter-spacing: -0.5px;
+        }
+
+        .terms-policy-card {
+          padding: 24px 20px;
+          border-radius: 13px;
+        }
+
+        .terms-policy-item {
+          grid-template-columns: 8px 1fr;
+          column-gap: 10px;
+
+          font-size: 13px;
+          line-height: 1.6;
+        }
+
+        .terms-policy-item + .terms-policy-item {
+          margin-top: 16px;
+        }
+      }
+
+      @media (max-width: 450px) {
+        .terms-policy-section {
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+
+        .terms-policy-title {
+          font-size: 24px;
+        }
+
+        .terms-policy-card {
+          padding: 21px 17px;
+        }
+
+        .terms-policy-item {
+          font-size: 12.5px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+       TERMS & CONDITIONS
+  ========================================================= -->
+
+    <section class="terms-policy-section">
+      <!-- Header -->
+      <div class="terms-policy-header">
+        <div class="terms-policy-badge">
+          <!-- Document Icon -->
+          <svg
+            class="terms-policy-badge-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M7 3.5H14.5L18.5 7.5V20.5H7C6.17 20.5 5.5 19.83 5.5 19V5C5.5 4.17 6.17 3.5 7 3.5Z"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+            />
+
+            <path
+              d="M14 3.8V8H18.2"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+            />
+
+            <path
+              d="M8.5 12H15.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M8.5 15.5H15.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <span>Official Policy &amp; Guidelines</span>
+        </div>
+
+        <h1 class="terms-policy-title">
+          Terms
+          <span class="terms-policy-title-highlight">&amp; Conditions</span>
+        </h1>
+      </div>
+
+      <!-- Main Terms Card -->
+      <div class="terms-policy-card">
+        <ul class="terms-policy-list">
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              The 8% Monthly rate under the Perpetual Yield Phase (Period C)
+              applies exclusively to Investor accounts and is calculated on the
+              invested principal amount.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              Networker/Affiliate accounts continue to earn strictly according
+              to their existing plan structure (daily ROI rates and 21-level
+              affiliate commissions); this phase does not alter Networker
+              earnings or rates in any way.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              Investors may withdraw their principal amount at any time, with no
+              lock-in period, subject to standard processing timelines.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              Daily/Monthly ROI earnings are separate from the principal and are
+              credited according to the applicable Period (A, B, or C) rate
+              active at that time.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              All earnings (ROI + affiliate income + achievement rewards) are
+              subject to a maximum income cap: 3x for Investors and 5x for
+              Networkers, calculated on total activation/investment amount.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              Once the income cap is reached, no further ROI, affiliate, or
+              bonus earnings will be credited to that account/package.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              Achievement rewards and affiliate commissions are credited only
+              after all eligibility conditions (active status, direct referral
+              requirements, business volume, etc.) are met.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              The company reserves the right to revise ROI rates, phase periods,
+              or terms with prior notice on the platform.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              All withdrawals are subject to applicable processing fees and
+              timelines as set by the platform.
+            </span>
+          </li>
+
+          <li class="terms-policy-item">
+            <span class="terms-policy-bullet"></span>
+            <span class="terms-policy-text">
+              Users are responsible for ensuring their account and payment
+              details are accurate; the company is not liable for losses due to
+              incorrect information provided by the user.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const termsSection = document.querySelector(".terms-policy-section");
+
+        if (!termsSection) return;
+
+        // Small entrance animation
+        termsSection.style.opacity = "0";
+        termsSection.style.transform = "translateY(8px)";
+        termsSection.style.transition =
+          "opacity 0.45s ease, transform 0.45s ease";
+
+        requestAnimationFrame(() => {
+          termsSection.style.opacity = "1";
+          termsSection.style.transform = "translateY(0)";
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ----- income Cap ---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Maximum Income Cap</title>
+
+    <!-- Inter -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <style>
+      /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* body {
+        min-height: 100vh;
+        background: #09090d;
+        color: #ffffff;
+        font-family: "Inter", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      } */
+
+      /* =========================================================
+       MAXIMUM INCOME CAP SECTION
+    ========================================================= */
+
+      .income-cap-section {
+        width: 100%;
+        min-height: 748px;
+
+        padding: 113px 24px 110px;
+
+        background: #09090d;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* =========================================================
+       SECTION HEADER
+    ========================================================= */
+
+      .income-cap-header {
+        width: 100%;
+        max-width: 1250px;
+
+        margin: 0 auto 41px;
+
+        text-align: center;
+      }
+
+      .income-cap-title {
+        margin: 0;
+
+        color: #f7f7f8;
+
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.9px;
+      }
+
+      .income-cap-title-highlight {
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      .income-cap-description {
+        max-width: 1240px;
+
+        margin: 11px auto 0;
+
+        color: #8ca7c6;
+
+        font-size: 13.5px;
+        font-weight: 400;
+        line-height: 1.45;
+        letter-spacing: 0;
+
+        text-align: center;
+      }
+
+      /* =========================================================
+       CAP CARDS WRAPPER
+    ========================================================= */
+
+      .income-cap-cards {
+        width: 100%;
+        max-width: 768px;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 16px;
+
+        margin: 0 auto;
+      }
+
+      /* =========================================================
+       INDIVIDUAL CAP CARD
+    ========================================================= */
+
+      .income-cap-card {
+        min-height: 401px;
+
+        padding: 31px 32px 32px;
+
+        background: #101016;
+
+        border: 1px solid #705919;
+        border-radius: 15px;
+
+        box-shadow: 0 18px 28px rgba(0, 0, 0, 0.15);
+
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .income-cap-card:hover {
+        transform: translateY(-3px);
+
+        border-color: #927321;
+
+        box-shadow: 0 22px 35px rgba(0, 0, 0, 0.24);
+      }
+
+      /* =========================================================
+       CARD TOP ROW
+    ========================================================= */
+
+      .income-cap-card-header {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 14px;
+      }
+
+      .income-cap-card-label {
+        color: #d9b42e;
+
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 1.2;
+
+        letter-spacing: 0.1px;
+        text-transform: uppercase;
+      }
+
+      .income-cap-badge {
+        flex-shrink: 0;
+
+        min-width: 73px;
+        height: 25px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0 12px;
+
+        border-radius: 999px;
+
+        background: #d8b12e;
+
+        color: #101016;
+
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      /* =========================================================
+       CARD TITLE
+    ========================================================= */
+
+      .income-cap-card-title {
+        margin-top: 18px;
+
+        color: #f7f7f8;
+
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 1.2;
+
+        letter-spacing: -0.55px;
+      }
+
+      /* =========================================================
+       CARD DESCRIPTION
+    ========================================================= */
+
+      .income-cap-card-description {
+        margin-top: 11px;
+
+        color: #c6c6ce;
+
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+
+        letter-spacing: -0.1px;
+      }
+
+      /* =========================================================
+       EXAMPLE BOXES
+    ========================================================= */
+
+      .income-cap-examples {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 16px;
+
+        margin-top: 25px;
+      }
+
+      .income-cap-example {
+        min-height: 94px;
+
+        padding: 15px 15px 13px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        background: #0c0c12;
+
+        border: 1px solid #272832;
+        border-radius: 11px;
+      }
+
+      .income-cap-example-investment {
+        color: #f0f0f2;
+
+        font-size: 12.5px;
+        font-weight: 800;
+        line-height: 1.35;
+      }
+
+      .income-cap-example-result {
+        margin-top: 3px;
+
+        color: #d9b52e;
+
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 1.45;
+      }
+
+      /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+      @media (max-width: 850px) {
+        .income-cap-section {
+          min-height: auto;
+          padding: 80px 20px;
+        }
+
+        .income-cap-cards {
+          max-width: 768px;
+        }
+
+        .income-cap-title {
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .income-cap-section {
+          padding: 65px 16px;
+        }
+
+        .income-cap-header {
+          margin-bottom: 32px;
+        }
+
+        .income-cap-title {
+          font-size: 26px;
+        }
+
+        .income-cap-description {
+          font-size: 13px;
+        }
+
+        .income-cap-cards {
+          grid-template-columns: 1fr;
+          max-width: 450px;
+        }
+
+        .income-cap-card {
+          min-height: auto;
+          padding: 27px 25px 28px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .income-cap-section {
+          padding: 55px 12px;
+        }
+
+        .income-cap-title {
+          font-size: 24px;
+        }
+
+        .income-cap-description {
+          font-size: 12.5px;
+        }
+
+        .income-cap-card {
+          padding: 24px 20px 25px;
+          border-radius: 13px;
+        }
+
+        .income-cap-card-label {
+          font-size: 10.5px;
+        }
+
+        .income-cap-badge {
+          min-width: 68px;
+          height: 24px;
+          font-size: 10px;
+        }
+
+        .income-cap-card-title {
+          font-size: 22px;
+        }
+
+        .income-cap-card-description {
+          font-size: 13px;
+        }
+
+        .income-cap-examples {
+          gap: 10px;
+        }
+
+        .income-cap-example {
+          padding: 13px 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+       MAXIMUM INCOME CAP
+  ========================================================= -->
+
+    <section class="income-cap-section">
+      <!-- Header -->
+      <header class="income-cap-header">
+        <h1 class="income-cap-title">
+          Maximum
+          <span class="income-cap-title-highlight"> Income Cap </span>
+        </h1>
+
+        <p class="income-cap-description">
+          Cap applies to the sum of ROI + Level Income (totalEarned). Investors
+          are capped at 3× their investment, while Networkers have a 5× cap.
+          Achievement rewards do not count toward cap.
+        </p>
+      </header>
+
+      <!-- Cards -->
+      <div class="income-cap-cards">
+        <!-- =====================================================
+           INVESTOR CARD
+      ====================================================== -->
+
+        <article class="income-cap-card">
+          <div class="income-cap-card-header">
+            <span class="income-cap-card-label"> Investor Earning Limit </span>
+
+            <span class="income-cap-badge"> 3X Cap </span>
+          </div>
+
+          <h2 class="income-cap-card-title">300% Total Return Cap</h2>
+
+          <p class="income-cap-card-description">
+            Investor accounts earn up to 300% (3 × Total Invested) in cumulative
+            ROI earnings. Once the 3X threshold is reached, principal can be
+            withdrawn or reinvested to continue earning.
+          </p>
+
+          <div class="income-cap-examples">
+            <div class="income-cap-example">
+              <span class="income-cap-example-investment">
+                $1,000 Investment
+              </span>
+
+              <span class="income-cap-example-result">
+                → $3,000<br />
+                Maximum Cap
+              </span>
+            </div>
+
+            <div class="income-cap-example">
+              <span class="income-cap-example-investment">
+                $5,000 Investment
+              </span>
+
+              <span class="income-cap-example-result">
+                → $15,000<br />
+                Maximum Cap
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+           NETWORKER CARD
+      ====================================================== -->
+
+        <article class="income-cap-card">
+          <div class="income-cap-card-header">
+            <span class="income-cap-card-label"> Networker Earning Limit </span>
+
+            <span class="income-cap-badge"> 5X Cap </span>
+          </div>
+
+          <h2 class="income-cap-card-title">500% Total Return Cap</h2>
+
+          <p class="income-cap-card-description">
+            Networker/Affiliate accounts earn up to 500% (5 × Total Invested) in
+            cumulative earnings across ROI distributions and referral level
+            commissions. Once the 5X threshold is reached, simply reinvest or
+            add new capital to continue earning.
+          </p>
+
+          <div class="income-cap-examples">
+            <div class="income-cap-example">
+              <span class="income-cap-example-investment">
+                $1,000 Investment
+              </span>
+
+              <span class="income-cap-example-result">
+                → $5,000<br />
+                Maximum Cap
+              </span>
+            </div>
+
+            <div class="income-cap-example">
+              <span class="income-cap-example-investment">
+                $5,000 Investment
+              </span>
+
+              <span class="income-cap-example-result">
+                → $25,000<br />
+                Maximum Cap
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const incomeCapSection = document.querySelector(".income-cap-section");
+
+        const incomeCapCards = document.querySelectorAll(".income-cap-card");
+
+        if (!incomeCapSection) return;
+
+        /* Initial state */
+
+        incomeCapSection.style.opacity = "0";
+        incomeCapSection.style.transform = "translateY(8px)";
+        incomeCapSection.style.transition =
+          "opacity 0.5s ease, transform 0.5s ease";
+
+        /* Reveal */
+
+        requestAnimationFrame(() => {
+          incomeCapSection.style.opacity = "1";
+          incomeCapSection.style.transform = "translateY(0)";
+        });
+
+        /* Card interaction */
+
+        incomeCapCards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            card.style.transform = "translateY(-3px)";
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "translateY(0)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ------ reward ------ -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Fixed Achievement Cash Rewards</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* =========================================================
+       ACHIEVEMENT REWARDS SECTION
+    ========================================================= */
+
+      .achievement-rewards-section {
+        width: 100%;
+        min-height: 584px;
+        padding: 65px 24px 61px;
+        background: #09090d;
+        border-top: 1px solid #9981038a;
+      }
+
+      /* =========================================================
+       SECTION HEADER
+    ========================================================= */
+
+      .achievement-rewards-header {
+        width: 100%;
+        max-width: 900px;
+
+        margin: 0 auto;
+
+        text-align: center;
+      }
+
+      .achievement-rewards-title {
+        color: #f5f5f6;
+
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.8px;
+      }
+
+      .achievement-rewards-title-highlight {
+        background: linear-gradient(
+          135deg,
+          #d4af37 0%,
+          #f5edcc 50%,
+          #ffc300 100%
+        );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      .achievement-rewards-subtitle {
+        max-width: 620px;
+
+        margin: 9px auto 0;
+
+        color: #8da8c7;
+
+        font-size: 13.5px;
+        font-weight: 400;
+        line-height: 1.45;
+      }
+
+      .achievement-rewards-subtitle strong {
+        color: #a8c0db;
+        font-weight: 700;
+      }
+
+      /* =========================================================
+       60 / 40 QUALIFICATION BOX
+    ========================================================= */
+
+      .achievement-qualification-box {
+        width: 100%;
+        max-width: 768px;
+
+        margin: 41px auto 39px;
+
+        padding: 20px 20px 19px;
+
+        background: #121217;
+
+        border: 1px solid #624f18;
+        border-radius: 12px;
+      }
+
+      .achievement-qualification-heading {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        color: #e0b52f;
+
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.3;
+      }
+
+      .achievement-qualification-icon {
+        width: 15px;
+        height: 15px;
+
+        flex-shrink: 0;
+
+        color: #e0b52f;
+      }
+
+      .achievement-qualification-text {
+        margin-top: 7px;
+
+        color: #e0e0e4;
+
+        font-size: 12.5px;
+        font-weight: 500;
+        line-height: 1.55;
+      }
+
+      /* =========================================================
+       REWARD GRID
+    ========================================================= */
+
+      .achievement-reward-grid {
+        width: 100%;
+        max-width: 1216px;
+
+        margin: 0 auto;
+
+        display: grid;
+
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+
+        gap: 12px;
+      }
+
+      /* =========================================================
+       REWARD CARD
+    ========================================================= */
+
+      .achievement-reward-card {
+        min-height: 88px;
+
+        padding: 14px 8px 12px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        background: #101016;
+
+        border: 1px solid #2b2c35;
+        border-radius: 11px;
+
+        transition:
+          transform 0.22s ease,
+          border-color 0.22s ease,
+          background 0.22s ease;
+      }
+
+      .achievement-reward-card:hover {
+        transform: translateY(-3px);
+
+        border-color: #66541b;
+
+        background: #121219;
+      }
+
+      /* =========================================================
+       REWARD TIER NAME
+    ========================================================= */
+
+      .achievement-tier-name {
+        color: #f1f1f3;
+
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 1.25;
+
+        white-space: nowrap;
+      }
+
+      /* =========================================================
+       BUSINESS VOLUME
+    ========================================================= */
+
+      .achievement-tier-volume {
+        margin-top: 4px;
+
+        color: #9eb7d4;
+
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.25;
+
+        white-space: nowrap;
+      }
+
+      /* =========================================================
+       CASH REWARD
+    ========================================================= */
+
+      .achievement-tier-reward {
+        margin-top: 7px;
+
+        color: #00e6a2;
+
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 1.25;
+
+        white-space: nowrap;
+      }
+
+      /* =========================================================
+       TABLET
+    ========================================================= */
+
+      @media (max-width: 1100px) {
+        .achievement-reward-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          max-width: 900px;
+        }
+      }
+
+      /* =========================================================
+       MOBILE
+    ========================================================= */
+
+      @media (max-width: 700px) {
+        .achievement-rewards-section {
+          min-height: auto;
+          padding: 55px 16px;
+        }
+
+        .achievement-rewards-title {
+          font-size: 27px;
+        }
+
+        .achievement-rewards-subtitle {
+          font-size: 13px;
+        }
+
+        .achievement-qualification-box {
+          margin-top: 32px;
+          margin-bottom: 30px;
+
+          padding: 18px 17px;
+        }
+
+        .achievement-qualification-text {
+          font-size: 12px;
+        }
+
+        .achievement-reward-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+
+          max-width: 500px;
+        }
+
+        .achievement-reward-card {
+          min-height: 88px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .achievement-rewards-section {
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+
+        .achievement-rewards-title {
+          font-size: 24px;
+        }
+
+        .achievement-rewards-subtitle {
+          font-size: 12px;
+        }
+
+        .achievement-reward-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .achievement-tier-name {
+          font-size: 11px;
+        }
+
+        .achievement-tier-volume {
+          font-size: 10px;
+        }
+
+        .achievement-tier-reward {
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =======================================================
+       FIXED ACHIEVEMENT CASH REWARDS
+  ======================================================== -->
+
+    <section class="achievement-rewards-section">
+      <!-- Section Header -->
+      <header class="achievement-rewards-header">
+        <h1 class="achievement-rewards-title">
+          Fixed Achievement
+          <span class="achievement-rewards-title-highlight">
+            Cash Rewards
+          </span>
+        </h1>
+
+        <p class="achievement-rewards-subtitle">
+          Earn fixed one-time cash rewards credited straight to your Profit
+          wallet. Governed strictly by the
+          <strong>60/40 Business Volume (BV) rule.</strong>
+        </p>
+      </header>
+
+      <!-- =====================================================
+         60 / 40 BV QUALIFICATION RULE
+    ====================================================== -->
+
+      <div class="achievement-qualification-box">
+        <div class="achievement-qualification-heading">
+          <svg
+            class="achievement-qualification-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="9.5"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+
+            <path
+              d="M8.5 12.2L10.7 14.4L15.6 9.6"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <span> The 60/40 BV Qualification Rule </span>
+        </div>
+
+        <p class="achievement-qualification-text">
+          To qualify for any tier: Maximum 60% of required BV can come from your
+          strongest direct referral leg; the remaining 40% minimum must come
+          from all other referral legs combined. Rewards pay the full fixed cash
+          amount upon meeting BV criteria.
+        </p>
+      </div>
+
+      <!-- =====================================================
+         ACHIEVEMENT REWARD GRID
+    ====================================================== -->
+
+      <div class="achievement-reward-grid">
+        <!-- 1. Pioneer -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Pioneer </span>
+
+          <span class="achievement-tier-volume"> $1,000 BV </span>
+
+          <span class="achievement-tier-reward"> $20 USDT </span>
+        </article>
+
+        <!-- 2. Builder -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Builder </span>
+
+          <span class="achievement-tier-volume"> $5,000 BV </span>
+
+          <span class="achievement-tier-reward"> $100 USDT </span>
+        </article>
+
+        <!-- 3. Achiever -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Achiever </span>
+
+          <span class="achievement-tier-volume"> $7,500 BV </span>
+
+          <span class="achievement-tier-reward"> $140 USDT </span>
+        </article>
+
+        <!-- 4. Influencer -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Influencer </span>
+
+          <span class="achievement-tier-volume"> $10,000 BV </span>
+
+          <span class="achievement-tier-reward"> $200 USDT </span>
+        </article>
+
+        <!-- 5. Mentor -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Mentor </span>
+
+          <span class="achievement-tier-volume"> $15,000 BV </span>
+
+          <span class="achievement-tier-reward"> $300 USDT </span>
+        </article>
+
+        <!-- 6. Captain -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Captain </span>
+
+          <span class="achievement-tier-volume"> $20,000 BV </span>
+
+          <span class="achievement-tier-reward"> $400 USDT </span>
+        </article>
+
+        <!-- 7. Champion -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Champion </span>
+
+          <span class="achievement-tier-volume"> $25,000 BV </span>
+
+          <span class="achievement-tier-reward"> $500 USDT </span>
+        </article>
+
+        <!-- 8. Elite -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Elite </span>
+
+          <span class="achievement-tier-volume"> $35,000 BV </span>
+
+          <span class="achievement-tier-reward"> $700 USDT </span>
+        </article>
+
+        <!-- 9. Innovator -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Innovator </span>
+
+          <span class="achievement-tier-volume"> $50,000 BV </span>
+
+          <span class="achievement-tier-reward"> $1,000 USDT </span>
+        </article>
+
+        <!-- 10. Titan -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Titan </span>
+
+          <span class="achievement-tier-volume"> $100,000 BV </span>
+
+          <span class="achievement-tier-reward"> $2,000 USDT </span>
+        </article>
+
+        <!-- 11. Silver Elite -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Silver Elite </span>
+
+          <span class="achievement-tier-volume"> $250,000 BV </span>
+
+          <span class="achievement-tier-reward"> $5,000 USDT </span>
+        </article>
+
+        <!-- 12. Platinum Elite -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Platinum Elite </span>
+
+          <span class="achievement-tier-volume"> $500,000 BV </span>
+
+          <span class="achievement-tier-reward"> $10,000 USDT </span>
+        </article>
+
+        <!-- 13. Ruby Elite -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Ruby Elite </span>
+
+          <span class="achievement-tier-volume"> $1,000,000 BV </span>
+
+          <span class="achievement-tier-reward"> $20,000 USDT </span>
+        </article>
+
+        <!-- 14. Legacy Founder -->
+        <article class="achievement-reward-card">
+          <span class="achievement-tier-name"> Legacy Founder </span>
+
+          <span class="achievement-tier-volume"> $100,000,000 BV </span>
+
+          <span class="achievement-tier-reward"> $4,000,000 USDT </span>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const rewardsSection = document.querySelector(
+          ".achievement-rewards-section",
+        );
+
+        const rewardCards = document.querySelectorAll(
+          ".achievement-reward-card",
+        );
+
+        if (!rewardsSection) return;
+
+        /* Subtle section entrance */
+
+        rewardsSection.style.opacity = "0";
+        rewardsSection.style.transform = "translateY(8px)";
+        rewardsSection.style.transition =
+          "opacity 0.5s ease, transform 0.5s ease";
+
+        requestAnimationFrame(() => {
+          rewardsSection.style.opacity = "1";
+          rewardsSection.style.transform = "translateY(0)";
+        });
+
+        /* Card interaction */
+
+        rewardCards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            card.style.transform = "translateY(-3px)";
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "translateY(0)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ----- footer ------ -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SolveX Footer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: #09090d;
+        font-family: "Inter", Arial, sans-serif;
+        color: #f5f5f5;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      /* =========================================================
+       SOLVEX FOOTER
+    ========================================================= */
+
+      .solvex-site-footer {
+        width: 100%;
+
+        background: #111118;
+
+        color: #9aacc3;
+
+        padding: 50px 0 46px;
+      }
+
+      /* =========================================================
+       FOOTER CONTAINER
+    ========================================================= */
+
+      .solvex-footer-container {
+        width: calc(100% - 48px);
+
+        max-width: 1320px;
+
+        margin: 0 auto;
+      }
+
+      /* =========================================================
+       TOP FOOTER CONTENT
+    ========================================================= */
+
+      .solvex-footer-main {
+        display: grid;
+
+        grid-template-columns:
+          1.45fr
+          1.15fr
+          1.2fr;
+
+        column-gap: 90px;
+
+        min-height: 159px;
+      }
+
+      /* =========================================================
+       BRAND AREA
+    ========================================================= */
+
+      .solvex-footer-brand {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+      /* =========================================================
+       LOGO
+    ========================================================= */
+
+      .solvex-footer-logo {
+        display: flex;
+
+        align-items: center;
+
+        height: 39px;
+
+        margin-bottom: 17px;
+      }
+
+      .solvex-footer-logo img {
+        display: block;
+
+        width: 150px;
+
+        height: 45px;
+
+        object-fit: contain;
+
+        object-position: left center;
+      }
+
+      /* =========================================================
+       FOOTER DESCRIPTION
+    ========================================================= */
+
+      .solvex-footer-description {
+        max-width: 480px;
+
+        color: #9db0c8;
+
+        font-size: 17px;
+
+        line-height: 1.7;
+
+        font-weight: 400;
+
+        letter-spacing: -0.1px;
+      }
+
+      /* =========================================================
+       FOOTER COLUMN
+    ========================================================= */
+
+      .solvex-footer-column {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+      /* =========================================================
+       COLUMN HEADING
+    ========================================================= */
+
+      .solvex-footer-column-title {
+        margin-bottom: 14px;
+
+        color: #e0b62f;
+
+        font-size: 17px;
+
+        line-height: 1.25;
+
+        font-weight: 700;
+      }
+
+      /* =========================================================
+       QUICK LINKS
+    ========================================================= */
+
+      .solvex-footer-links {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 9px;
+      }
+
+      .solvex-footer-link {
+        color: #9db0c8;
+
+        font-size: 17px;
+
+        line-height: 1.4;
+
+        font-weight: 400;
+
+        transition: color 0.2s ease;
+      }
+
+      .solvex-footer-link:hover {
+        color: #e0b62f;
+      }
+
+      /* =========================================================
+       IMPORTANT NOTICE
+    ========================================================= */
+
+      .solvex-footer-notice {
+        max-width: 485px;
+
+        color: #7589a3;
+
+        font-size: 15px;
+
+        line-height: 1.62;
+
+        font-weight: 400;
+      }
+
+      /* =========================================================
+       FOOTER DIVIDER
+    ========================================================= */
+
+      .solvex-footer-divider {
+        width: 100%;
+
+        height: 1px;
+
+        margin-top: 35px;
+
+        background: #2b2d35;
+      }
+
+      /* =========================================================
+       FOOTER BOTTOM
+    ========================================================= */
+
+      .solvex-footer-bottom {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding-top: 29px;
+      }
+
+      /* =========================================================
+       COPYRIGHT
+    ========================================================= */
+
+      .solvex-footer-copyright {
+        color: #71849e;
+
+        font-size: 15px;
+
+        line-height: 1.4;
+
+        font-weight: 400;
+      }
+
+      /* =========================================================
+       AUTH LINKS
+    ========================================================= */
+
+      .solvex-footer-auth-links {
+        display: flex;
+
+        align-items: center;
+
+        gap: 24px;
+      }
+
+      .solvex-footer-auth-link {
+        color: #71849e;
+
+        font-size: 14px;
+
+        line-height: 1.4;
+
+        font-weight: 400;
+
+        transition: color 0.2s ease;
+      }
+
+      .solvex-footer-auth-link:hover {
+        color: #e0b62f;
+      }
+
+      /* =========================================================
+       TABLET
+    ========================================================= */
+
+      @media (max-width: 950px) {
+        .solvex-site-footer {
+          padding: 45px 0 40px;
+        }
+
+        .solvex-footer-container {
+          width: calc(100% - 40px);
+        }
+
+        .solvex-footer-main {
+          column-gap: 45px;
+        }
+
+        .solvex-footer-description {
+          font-size: 15px;
+        }
+
+        .solvex-footer-link {
+          font-size: 15px;
+        }
+
+        .solvex-footer-notice {
+          font-size: 14px;
+        }
+      }
+
+      /* =========================================================
+       MOBILE
+    ========================================================= */
+
+      @media (max-width: 700px) {
+        .solvex-site-footer {
+          padding: 42px 0 35px;
+        }
+
+        .solvex-footer-container {
+          width: calc(100% - 32px);
+        }
+
+        .solvex-footer-main {
+          grid-template-columns: 1fr;
+
+          row-gap: 35px;
+
+          min-height: auto;
+        }
+
+        .solvex-footer-logo img {
+          width: 145px;
+        }
+
+        .solvex-footer-description {
+          max-width: 500px;
+
+          font-size: 15px;
+
+          line-height: 1.65;
+        }
+
+        .solvex-footer-column-title {
+          font-size: 16px;
+        }
+
+        .solvex-footer-link {
+          font-size: 15px;
+        }
+
+        .solvex-footer-notice {
+          max-width: 550px;
+
+          font-size: 14px;
+
+          line-height: 1.6;
+        }
+
+        .solvex-footer-divider {
+          margin-top: 38px;
+        }
+
+        .solvex-footer-bottom {
+          flex-direction: column;
+
+          align-items: flex-start;
+
+          gap: 18px;
+
+          padding-top: 24px;
+        }
+
+        .solvex-footer-auth-links {
+          gap: 22px;
+        }
+      }
+
+      /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+      @media (max-width: 400px) {
+        .solvex-footer-container {
+          width: calc(100% - 28px);
+        }
+
+        .solvex-footer-description {
+          font-size: 14px;
+        }
+
+        .solvex-footer-notice {
+          font-size: 13px;
+        }
+
+        .solvex-footer-copyright {
+          font-size: 13px;
+        }
+
+        .solvex-footer-auth-link {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =======================================================
+       SOLVEX FOOTER
+  ======================================================== -->
+
+    <footer class="solvex-site-footer">
+      <div class="solvex-footer-container">
+        <!-- =====================================================
+           FOOTER MAIN CONTENT
+      ====================================================== -->
+
+        <div class="solvex-footer-main">
+          <!-- ===================================================
+             BRAND
+        ==================================================== -->
+
+          <div class="solvex-footer-brand">
+            <a href="#" class="solvex-footer-logo" aria-label="SolveX Home">
+              <img
+                src="https://worldofforex.uk/wp-content/uploads/2026/09/logo-1.png"
+                alt="SolveX"
+              />
+            </a>
+
+            <p class="solvex-footer-description">
+              Trade Smarter | Grow Further. Transparent profit sharing with
+              21-level commissions and structured achievement rewards.
+            </p>
+          </div>
+
+          <!-- ===================================================
+             QUICK LINKS
+        ==================================================== -->
+
+          <div class="solvex-footer-column">
+            <h2 class="solvex-footer-column-title">Quick Links</h2>
+
+            <nav class="solvex-footer-links" aria-label="Quick Links">
+              <a href="#packages" class="solvex-footer-link"> Packages </a>
+
+              <a href="#profit-sharing" class="solvex-footer-link">
+                Profit Sharing
+              </a>
+
+              <a href="#commission" class="solvex-footer-link">
+                25-Level Commission
+              </a>
+
+              <a href="#rewards" class="solvex-footer-link"> Rewards </a>
+            </nav>
+          </div>
+
+          <!-- ===================================================
+             IMPORTANT
+        ==================================================== -->
+
+          <div class="solvex-footer-column">
+            <h2 class="solvex-footer-column-title">Important</h2>
+
+            <p class="solvex-footer-notice">
+              No profit, salary, reward or level commission is guaranteed. All
+              distributions depend on actual realized profit and available
+              allocated pools. Trade only with funds you can afford to lose.
+            </p>
+          </div>
+        </div>
+
+        <!-- =====================================================
+           DIVIDER
+      ====================================================== -->
+
+        <div class="solvex-footer-divider"></div>
+
+        <!-- =====================================================
+           FOOTER BOTTOM
+      ====================================================== -->
+
+        <div class="solvex-footer-bottom">
+          <p class="solvex-footer-copyright">
+            © 2026 Solvex. All rights reserved.
+          </p>
+
+          <div class="solvex-footer-auth-links">
+            <a href="#login" class="solvex-footer-auth-link"> Login </a>
+
+            <a href="#register" class="solvex-footer-auth-link"> Register </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const footerLinks = document.querySelectorAll(
+          ".solvex-footer-link, .solvex-footer-auth-link",
+        );
+
+        footerLinks.forEach(function (link) {
+          link.addEventListener("click", function (event) {
+            const target = this.getAttribute("href");
+
+            if (target && target.startsWith("#")) {
+              const destination = document.querySelector(target);
+
+              if (destination) {
+                event.preventDefault();
+
+                destination.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
